@@ -1,9 +1,1 @@
-# Ignore everything
-*
-
-# But not these files...
-!.gitignore
-!*.c
-!*.h
-!UGUI-master
-!Project
+stm32f429-master.zip
