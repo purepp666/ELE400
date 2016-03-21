@@ -10,30 +10,55 @@
  *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
  *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
-/* Include core modules */
+
 #include "stm32f4xx.h"
-/* Include my libraries here */
+
 #include "defines.h"
-#include "tm_stm32f4_usart.h"
+#include "tm_stm32f4_delay.h"
+#include "../00-STM32F429_ELE400_Librairies/ele400_communication_frames.h"
+
+/******************************************************************************/
+/*            									Global Variables           	      			 		  */
+/******************************************************************************/ 
+
+uint32_t timer_counter_ = 0;
+uint32_t counter_compare_ = 0;
+
+/******************************************************************************/
+/*            									      Main           	      			 		  			*/
+/******************************************************************************/ 
 
 int main(void) {
-	char buffer[100];
 	
-	/* Initialize system */
+	SystemInit();
+	
+	InitComms(0x0A);
+	
+
+	while(1){
+		
+	}
+	
+	/*char buffer[100];
+	
 	SystemInit();
 
-	/* Initialize USART1 at 115200 baud, TX: PB6, RX: PB7 */
 	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);
 	
-	/* Put string to USART */
 	TM_USART_Puts(USART1, "Hello world\n");
 
 	while (1) {
-		/* Get string from internal buffer */
 		if (TM_USART_Gets(USART1, buffer, sizeof(buffer))) {
-			/* Return string back */
 			TM_USART_Puts(USART1, buffer);
 		}
-	}
+	}*/
+}
+
+/******************************************************************************/
+/*            							Functions definitions           	     		  			*/
+/******************************************************************************/ 
+
+void TM_DELAY_1msHandler(void){
+	timer_counter_++;
 }
 
