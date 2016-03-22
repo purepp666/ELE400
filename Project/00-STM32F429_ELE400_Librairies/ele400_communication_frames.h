@@ -3,14 +3,14 @@
  * @email   alexidemers@gmail.com
  * @version v1
  * @ide     Keil uVision
- * @brief   Communication frames library for STM32F429. This library handles
+ * @brief   CamUart_unication frames library for STM32F429. This library handles
  *					sending messages and receiving messages from the embedded controller
- *					of the cable cam. The wireless communication module used is 
+ *					of the cable cam. The wireless CamUart_unication module used is 
  *					Xbee.
  */
  
-#ifndef ELE400_COMMUNICATION_FRAME_H
-	#define ELE400_COMMUNICATION_FRAME_H
+#ifndef ELE400_CamUart_UNICATION_FRAME_H
+	#define ELE400_CamUart_UNICATION_FRAME_H
 	
 #include <stdbool.h>
 #include "stm32f4xx.h"
@@ -44,55 +44,55 @@
 		uint16_t cable_lenght;
 		uint8_t connected_interface_address;
 		uint8_t error;
-	}DataReceived;
+	}CamRxData;
 
 	/**
-	 * @brief  This function initialize everything needed to communicate to the XBee module
+	 * @brief  This function initialize everything needed to CamUart_unicate to the XBee module
 	 * @param  this_device_address: address of your device
 	 * @retval None
 	 */
-		void InitComms(uint8_t this_device_address);
+		void CamUart_Init(uint8_t this_device_address);
 		
 	/**
 	 * @brief  Sends a frame that indicates to the receiver that a new interface tries to connect
 	 * @param  this_device_address: address of your device
 	 * @retval None
 	 */	
-		void SendConnectFrame(void);
+		void CamUart_SendConnectFrame(void);
 		
 	/**
-	 * @brief Sends a frame that indicates to the receiver that the interface will stop sending commands
+	 * @brief Sends a frame that indicates to the receiver that the interface will stop sending CamUart_ands
 	 * @param none
 	 * @retval none
 	 */
-		void SendDisconnectFrame(void);
+		void CamUart_SendDisconnectFrame(void);
 		
 	/**
 	 * @brief  Sends a configuration frame for the cable camera controller
 	 * @param  data: data to send
 	 * @retval None
 	 */	
-		void SendConfigFrame(const ConfigCommand data);	
+		void CamUart_SendConfigFrame(const ConfigCommand data);	
 	
 	/**
-	 * @brief  Sends a control frame to the calbe cam controller. see ControlCommand struct
+	 * @brief  Sends a control frame to the calbe cam controller. see ControlCamUart_and struct
 	 * @param  data: data to send
 	 * @retval None
 	 */	
-		void SendControlFrame(const ControlCommand data);	
+		void CamUart_SendControlFrame(const ControlCommand data);	
 		
 	/**
 	 * @brief  returns the number of rx errors encountered since last call of this function
 	 * @param  data: data to send
 	 * @retval uint8_t rx_errors
 	 */
-		uint8_t GetRxErrorsCount(void);
+		uint8_t CamUart_GetRxErrorsCount(void);
 		
 	/**
 	 * @brief pops a message from the rx buffer.
-	 * @param  none
-	 * @retval DataReceived message poped
+	 * @param  data the data read
+	 * @retval bool true if a message has been read
 	 */	
-		DataReceived ReadMessage(void);
+		bool CamUart_ReadMessage(CamRxData *data);
 
 #endif

@@ -54,7 +54,7 @@ enum state_machine{
 /******************************************************************************/ 
 
 uint8_t this_device_address_ = 0;
-DataReceived rx_buffer_[RX_BUF_SIZE];
+CamRxData rx_buffer_[RX_BUF_SIZE];
 uint8_t rx_buffer_level_ = 0;
 uint8_t error_count_ = 0;
 
@@ -71,7 +71,7 @@ uint8_t error_count_ = 0;
  * @param  lenght: lenght of the data to calculate. 
  * @retval None
  */	
-uint8_t CalculateChecksum(uint8_t *frame, uint8_t lenght);
+uint8_t CamUart_CalculateChecksum(uint8_t *frame, uint8_t lenght);
 
 
 
@@ -79,38 +79,38 @@ uint8_t CalculateChecksum(uint8_t *frame, uint8_t lenght);
 /*            								Functions definitions           	              */
 /******************************************************************************/ 
 
-void InitComms(uint8_t this_device_address){
+void CamUart_Init(uint8_t this_device_address){
 	
-	TM_USART_Init(USART_USED, TM_USART_PinsPack_2, BAUDRATE);
+	TM_USART_Init(USART_USED, TM_USART_PinsPack_1, BAUDRATE);
 	
 	this_device_address_ = this_device_address;
 }
 
 /******************************************************************************/
  
-void SendConnectFrame(void){
+void CamUart_SendConnectFrame(void){
 	uint8_t frame[5] = {CONNECT_SOF[0], CONNECT_SOF[1], CONNECT_SOF[2]};
 	
 	frame[3] = this_device_address_;
-	frame[4] = CalculateChecksum(frame, 4);								
+	frame[4] = CamUart_CalculateChecksum(frame, 4);								
 	
 	TM_USART_Send(USART_USED, frame, 5);
 }
 
 /******************************************************************************/
  
-void SendDisconnectFrame(void){
+void CamUart_SendDisconnectFrame(void){
 	uint8_t frame[5] = {DISCONNECT_SOF[0], DISCONNECT_SOF[1], DISCONNECT_SOF[2]};
 	
 	frame[3] = this_device_address_;
-	frame[4] = CalculateChecksum(frame, 4);								
+	frame[4] = CamUart_CalculateChecksum(frame, 4);								
 	
 	TM_USART_Send(USART_USED, frame, 5);
 }
 
 /******************************************************************************/
  
-void SendConfigFrame(const ConfigCommand data){
+void CamUart_SendConfigFrame(const ConfigCommand data){
 	uint8_t frame[9] = {CONFIG_SOF[0], CONFIG_SOF[1], CONFIG_SOF[2]};
 	
 	frame[3] = this_device_address_;
@@ -118,27 +118,27 @@ void SendConfigFrame(const ConfigCommand data){
 	frame[5] = data.decel;
 	frame[6] = (uint8_t)(data.cable_lenght >> 8);
 	frame[7] = (uint8_t)data.cable_lenght;
-	frame[8] = CalculateChecksum(frame, 8);								
+	frame[8] = CamUart_CalculateChecksum(frame, 8);								
 	
 	TM_USART_Send(USART_USED, frame, 9);
 }
 
 /******************************************************************************/
  
-void SendControlFrame(const ControlCommand data){
+void CamUart_SendControlFrame(const ControlCommand data){
 	uint8_t frame[7] = {CONTROL_SOF[0], CONTROL_SOF[1], CONTROL_SOF[2]};
 	
 	frame[3] = this_device_address_;
 	frame[4] = data.speed;
 	frame[5] = (uint8_t)data.emergency_stop;
-	frame[6] = CalculateChecksum(frame, 5);								
+	frame[6] = CamUart_CalculateChecksum(frame, 5);								
 	
 	TM_USART_Send(USART_USED, frame, 6);
 }
 
 /******************************************************************************/
 
-uint8_t CalculateChecksum(uint8_t *frame, uint8_t lenght){
+uint8_t CamUart_CalculateChecksum(uint8_t *frame, uint8_t lenght){
 	uint8_t i = 0;
 	uint8_t checksum = 0;
 	
@@ -151,7 +151,7 @@ uint8_t CalculateChecksum(uint8_t *frame, uint8_t lenght){
 
 /******************************************************************************/
 
-uint8_t GetRxErrorsCount(){
+uint8_t CamUart_GetRxErrorsCount(){
 	uint8_t retval = error_count_;
 	error_count_ = 0;
 	return retval;
@@ -159,15 +159,14 @@ uint8_t GetRxErrorsCount(){
 
 /******************************************************************************/
 
-DataReceived ReadMessage(){
+bool CamUart_ReadMessage(CamRxData *data){
 	
-	DataReceived retbuf;// null pointer
 	uint8_t i = 0;
 	
 	// if buffer isn't empty
 	if(rx_buffer_level_){
 		// saves the oldest data received as the data to return
-		retbuf = rx_buffer_[0];
+		*data = rx_buffer_[0];
 
 		// shift datas in the buffer to remove one
 		for(i = 0; i < rx_buffer_level_ - 1; i++){
@@ -175,19 +174,21 @@ DataReceived ReadMessage(){
 		}
 		// indicates the buffer has one data removed
 		rx_buffer_level_--;
+		return true;
 	}	
-	
-	return retbuf; 
+	else
+	{
+		return false;
+	}
 }
 
 /******************************************************************************/
 // Interrupt handler
 void TM_USART1_ReceiveHandler(uint8_t c){
-	static uint8_t state;
+	static uint8_t state = 0;
 	uint8_t sum =0;
 	
 	switch(state){
-		
 		// rcvd 1st SOF char?
 		case e_sof0:
 			if(c == RX_MSG_SOF[0]){
@@ -215,7 +216,7 @@ void TM_USART1_ReceiveHandler(uint8_t c){
 			state++;
 			break;
 		case e_posH:
-			rx_buffer_[rx_buffer_level_].position = c << 8;
+			rx_buffer_[rx_buffer_level_].position = (uint16_t)(c << 8);
 			state++;
 			break;
 		case e_posL:
@@ -243,7 +244,7 @@ void TM_USART1_ReceiveHandler(uint8_t c){
 			state++;
 			break;
 		case e_clenghtL:
-			rx_buffer_[rx_buffer_level_].cable_lenght = c;
+			rx_buffer_[rx_buffer_level_].cable_lenght |= c;
 			state++;
 			break;
 		case e_interface_add:
@@ -257,6 +258,8 @@ void TM_USART1_ReceiveHandler(uint8_t c){
 		
 		// calculating checksum
 		case e_checksum:
+		
+			sum += RX_MSG_SOF[0]+RX_MSG_SOF[1]+RX_MSG_SOF[2];
 			sum += rx_buffer_[rx_buffer_level_].battery_level;
 			sum += rx_buffer_[rx_buffer_level_].position >> 8;
 			sum += (uint8_t)rx_buffer_[rx_buffer_level_].position;
@@ -268,7 +271,7 @@ void TM_USART1_ReceiveHandler(uint8_t c){
 			sum += (uint8_t)rx_buffer_[rx_buffer_level_].cable_lenght;
 			sum += rx_buffer_[rx_buffer_level_].connected_interface_address;
 			sum += rx_buffer_[rx_buffer_level_].error;
-			
+
 			// if checksum passes, increases buffer size. Else, increases error count
 			if(sum == c){
 				// if buffer overflows
