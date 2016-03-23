@@ -198,20 +198,20 @@ int main(void) {
 			// Stops timer
 			TM_DELAY_TimerStop(timer);
 			// Show controller is offline
-			//CamLcd_ControllerOnline(false)
+			//CamScreen_ControllerOnline(false)
 
 		}
 		else{
 			// Starts timer
 			TM_DELAY_TimerStart(timer);
-			//CamLcd_ControllerOnline(true)
+			//CamScreen_ControllerOnline(true)
 			
 
 		}
 		
 		/******************** Touch screen and tx ********************************/
 		
-		// if(CamLcd_ReadTouchScreenButtons(&button_pressed)){
+		// if(CamScreen_ReadTouchScreenButtons(&button_pressed)){
 		//		SendCommand(button_pressed);	
 		//		#ifdef DEBUG
 		//			TM_USART_Puts(\n\nUSART1,"Touch Screen button: ");
@@ -221,7 +221,7 @@ int main(void) {
 		
 		// Emergency button
 		if(TM_DISCO_ButtonOnPressed()){
-			//cont_command.speed = -CamLcd_GetSpeed();
+			//cont_command.speed = -CamScreen_GetSpeed();
 			cont_command.emergency_stop = true;
 			CamUart_SendControlFrame(cont_command);
 		}
@@ -230,7 +230,7 @@ int main(void) {
 		
 		/********************** Screen Thread ************************************/
 
-		//CamLcd_RefreshScreen();
+		//CamScreen_RefreshScreen();
 
 	}
 	
@@ -251,16 +251,16 @@ void CustomTimerHandler(void* param){
 
 void ProcessMessages(CamRxData rx_data){
 	
-	//CamLcd_UpdateSpeed(rx_data.actual_speed);
-	//CamLcd_UpdateBattLevel(rx_data.battery_level)
-	//CamLcd_UpdatePosition(rx_data.position)
+	//CamScreen_UpdateSpeed(rx_data.actual_speed);
+	//CamScreen_UpdateBattLevel(rx_data.battery_level)
+	//CamScreen_UpdatePosition(rx_data.position)
 	
 	// Verify if we are connected to the controller
 	if(ADDRESS == rx_data.connected_interface_address){
-		// CamLcd_SetConnected(true);
+		// CamScreen_SetConnected(true);
 	}
 	else{
-		// CamLcd_SetConnected(false);
+		// CamScreen_SetConnected(false);
 	}
 
 }
@@ -271,6 +271,9 @@ bool HandleTxErrors(CamRxData rx_data){
 	bool error_encountered = false;
 	static bool tx_error = false;
 	
+	if(rx_data.error & EMERGENCY_STOP){
+			//CamScreen_EmergencyStop()
+	}
 	
 	// If an error that hasn't been seen yet occurs on cablecam
 	if(rx_data.error != 0 && (rx_data.error & errors_flags)!=rx_data.error){
@@ -284,28 +287,25 @@ bool HandleTxErrors(CamRxData rx_data){
 		errors_flags |= rx_data.error;
 	
 		if(rx_data.error & CABLE_END){
-			//CamLcd_AddError("End of cable reached");
+			//CamScreen_AddError("End of cable reached");
 		}
 		if(rx_data.error & BATT_TEMP){
-			//CamLcd_AddError("Battery temperature high");
+			//CamScreen_AddError("Battery temperature high");
 		}
 		if(rx_data.error & BATT_LOW){
-			//CamLcd_AddError("Battery low");
+			//CamScreen_AddError("Battery low");
 		}
 		if(rx_data.error & MOTOR_FORCES){
-			//CamLcd_AddError("Motor forces to reach speed");
+			//CamScreen_AddError("Motor forces to reach speed");
 		}
 		if(rx_data.error & INVALID_COMMAND){
 			tx_error = true;
 		}
 		if(rx_data.error & OBSTACLE){
-			//CamLcd_AddError("Obstacle on the cable");
-		}
-		if(rx_data.error & EMERGENCY_STOP){
-			//CamLcd_AddError("Emergency stop enabled");
+			//CamScreen_AddError("Obstacle on the cable");
 		}
 		if(rx_data.error & INTERFACES_CONFLICT){
-			//CamLcd_AddError("Other interfaces try to connect");
+			//CamScreen_AddError("Other interfaces try to connect");
 		}
 	}
 	
@@ -323,7 +323,7 @@ bool HandleTxErrors(CamRxData rx_data){
 	// Verify and show tx errors
 	if(tx_error && (errors_flags & TX_ERROR) == 0){
 		errors_flags |= TX_ERROR;
-		// CamLcd_AddError("A command was lost by the cablecam. Verify config.");
+		// CamScreen_AddError("A command was lost by the cablecam. Verify config.");
 	}
 
 	return error_encountered;
@@ -338,7 +338,7 @@ bool HandleRxErrors(void){
 	// Verify and show rx errors
 	if(errors && (errors_flags & RX_ERROR) == 0){
 		errors_flags |= RX_ERROR;
-		// CamLcd_AddError("Invalid messages received");
+		// CamScreen_AddError("Invalid messages received");
 	}
 	
 	if(errors)
@@ -350,7 +350,7 @@ bool HandleRxErrors(void){
 /******************************************************************************/
 
 void RecoverFromErrors(void){
-	// CamLcd_DeleteErrors(); 
+	// CamScreen_DeleteErrors(); 
 	errors_flags = 0;
 }
 
@@ -365,18 +365,18 @@ void SendCommand(uint8_t command){
 			CamUart_SendDisconnectFrame();
 			break;
 		case CONFIGURE:
-			conf_command.accel = CamLcd_GetAccel();-------
-			conf_command.decel = CamLcd_GetDecel();-------
-			conf_command.cable_lenght = CamLcd_GetCableLenght();----------
+			conf_command.accel = CamScreen_GetAccel();-------
+			conf_command.decel = CamScreen_GetDecel();-------
+			conf_command.cable_lenght = CamScreen_GetCableLenght();----------
 			CamUart_SendConfigFrame(conf_command);
 			break;
 		case LEFT_DIRECTION:
-			cont_command.speed = -CamLcd_GetSpeed();
+			cont_command.speed = -CamScreen_GetSpeed();
 			cont_command.emergency_stop = false;
 			CamUart_SendControlFrame(cont_command);
 			break;
 		case RIGHT_DIRECTION:
-			cont_command.speed = CamLcd_GetSpeed();
+			cont_command.speed = CamScreen_GetSpeed();
 			cont_command.emergency_stop = false;
 			CamUart_SendControlFrame(cont_command);
 			break;
