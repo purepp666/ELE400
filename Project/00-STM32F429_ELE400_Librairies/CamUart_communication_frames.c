@@ -10,7 +10,7 @@
  */
  
 #include <stddef.h> 
-#include "ele400_communication_frames.h"
+#include "CamUart_communication_frames.h"
 #include "tm_stm32f4_usart.h"
 
 /******************************************************************************/

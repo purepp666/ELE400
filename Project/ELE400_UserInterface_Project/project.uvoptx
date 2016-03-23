@@ -405,40 +405,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_2048 -FS08000000 -FL0200000 -FP0($$Device:STM32F429ZITx$CMSIS\Flash\STM32F4xx_2048.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>72</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134224530</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\project\../00-STM32F429_LIBRARIES/tm_stm32f4_delay.c\72</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>56</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134224496</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\project\../00-STM32F429_LIBRARIES/tm_stm32f4_delay.c\56</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -448,7 +415,7 @@
         <aLwin>1</aLwin>
         <aCover>0</aCover>
         <aSer1>1</aSer1>
-        <aSer2>0</aSer2>
+        <aSer2>1</aSer2>
         <aPa>0</aPa>
         <viewmode>1</viewmode>
         <vrSel>0</vrSel>
@@ -457,7 +424,7 @@
         <AscS1>0</AscS1>
         <AscS2>0</AscS2>
         <AscS3>0</AscS3>
-        <aSer3>0</aSer3>
+        <aSer3>1</aSer3>
         <eProf>0</eProf>
         <aLa>0</aLa>
         <aPa1>0</aPa1>
@@ -1195,11 +1162,11 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>22</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\00-STM32F429_ELE400_Librairies\ele400_communication_frames.c</PathWithFileName>
-      <FilenameWithoutPath>ele400_communication_frames.c</FilenameWithoutPath>
+      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_delay.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1210,8 +1177,8 @@
       <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_delay.c</FilenameWithoutPath>
+      <PathWithFileName>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</PathWithFileName>
+      <FilenameWithoutPath>CamUart_communication_frames.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -616,14 +616,14 @@
           <GroupName>ELE400_Lib</GroupName>
           <Files>
             <File>
-              <FileName>ele400_communication_frames.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_ELE400_Librairies\ele400_communication_frames.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamUart_communication_frames.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1277,14 +1277,14 @@
           <GroupName>ELE400_Lib</GroupName>
           <Files>
             <File>
-              <FileName>ele400_communication_frames.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_ELE400_Librairies\ele400_communication_frames.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamUart_communication_frames.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1937,14 +1937,14 @@
           <GroupName>ELE400_Lib</GroupName>
           <Files>
             <File>
-              <FileName>ele400_communication_frames.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_ELE400_Librairies\ele400_communication_frames.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamUart_communication_frames.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2597,14 +2597,14 @@
           <GroupName>ELE400_Lib</GroupName>
           <Files>
             <File>
-              <FileName>ele400_communication_frames.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_ELE400_Librairies\ele400_communication_frames.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamUart_communication_frames.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
             </File>
           </Files>
         </Group>
