@@ -570,6 +570,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -615,11 +625,6 @@
         <Group>
           <GroupName>ELE400_Lib</GroupName>
           <Files>
-            <File>
-              <FileName>tm_stm32f4_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
             <File>
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>
@@ -1231,6 +1236,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1276,11 +1291,6 @@
         <Group>
           <GroupName>ELE400_Lib</GroupName>
           <Files>
-            <File>
-              <FileName>tm_stm32f4_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
             <File>
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>
@@ -1891,6 +1901,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1936,11 +1956,6 @@
         <Group>
           <GroupName>ELE400_Lib</GroupName>
           <Files>
-            <File>
-              <FileName>tm_stm32f4_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
             <File>
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>
@@ -2551,6 +2566,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2596,11 +2621,6 @@
         <Group>
           <GroupName>ELE400_Lib</GroupName>
           <Files>
-            <File>
-              <FileName>tm_stm32f4_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
             <File>
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>

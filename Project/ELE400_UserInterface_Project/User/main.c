@@ -14,6 +14,7 @@
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
 #include "../00-STM32F429_ELE400_Librairies/CamUart_communication_frames.h"
+#include "tm_stm32f4_button.h"
 
 
 #define DEBUG
@@ -54,6 +55,13 @@
  * @retval None
  */	
 void CustomTimerHandler(void* param);
+
+/**
+ * @brief  Handles buttons
+ * @param  param: button state
+ * @retval None
+ */	
+void ButtonsHandler(TM_BUTTON_PressType_t param);
 
 /**
  * @brief  Process messages and sets screen values
@@ -109,6 +117,7 @@ int main(void) {
 	CamRxData rx_data;									// Data read from uart
 	bool errors_encountered = false;		// Indicates an error has been encountered
 	TM_DELAY_Timer_t *timer;						// timer used
+	TM_BUTTON_t *joystick_push;
 	
 	SystemInit();
 	
@@ -121,8 +130,12 @@ int main(void) {
 	
 	// Creates new timer
 	timer = TM_DELAY_TimerCreate(100, 1, 1, &CustomTimerHandler,0);
+	joystick_push = TM_BUTTON_Init(GPIOA,0,1,&ButtonsHandler);
+	joystick_push = TM_BUTTON_SetPressTime(joystick_push,100,1000);
 
 	while(1){
+		
+		TM_BUTTON_Update();
 		
 		/**************** Read XBee messages ************************************/
 		if(CamUart_ReadMessage(&rx_data)){
@@ -371,6 +384,16 @@ void SendCommand(uint8_t command){
 			CamUart_SendControlFrame(cont_command);
 			break;
 	}*/
+}
+
+/******************************************************************************/
+
+void ButtonsHandler(TM_BUTTON_PressType_t param){
+	if(param == TM_BUTTON_PressType_Normal){
+		//cont_command.speed = -CamLcd_GetSpeed();
+		cont_command.emergency_stop = true;
+		CamUart_SendControlFrame(cont_command);
+	}
 }
 
 /******************************************************************************/
