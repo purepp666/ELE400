@@ -576,9 +576,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_button.c</FileName>
+              <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1242,9 +1242,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_button.c</FileName>
+              <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1907,9 +1907,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_button.c</FileName>
+              <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2572,9 +2572,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_button.c</FileName>
+              <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_button.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
           </Files>
         </Group>

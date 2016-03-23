@@ -43,6 +43,6 @@
 .\targets\stm32f429_discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\targets\stm32f429_discovery\main.o: ..\00-STM32F429_LIBRARIES\../00-STM32F429_ELE400_Librairies/CamUart_communication_frames.h
 .\targets\stm32f429_discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\targets\stm32f429_discovery\main.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_button.h
+.\targets\stm32f429_discovery\main.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h
 .\targets\stm32f429_discovery\main.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h
 .\targets\stm32f429_discovery\main.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h
