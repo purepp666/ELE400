@@ -40,7 +40,6 @@ enum state_machine{
 	e_ai_speed,
 	e_ac_speed,
 	e_accel,
-	e_decel,
 	e_clenghtH,
 	e_clenghtL,
 	e_interface_add,
@@ -90,50 +89,53 @@ void CamUart_Init(uint8_t this_device_address){
  
 void CamUart_SendConnectFrame(void){
 	uint8_t frame[5] = {CONNECT_SOF[0], CONNECT_SOF[1], CONNECT_SOF[2]};
+	uint8_t i = 3;
 	
-	frame[3] = this_device_address_;
-	frame[4] = CamUart_CalculateChecksum(frame, 4);								
+	frame[i++] = this_device_address_;
+	frame[i++] = CamUart_CalculateChecksum(frame, 4);								
 	
-	TM_USART_Send(USART_USED, frame, 5);
+	TM_USART_Send(USART_USED, frame, i);
 }
 
 /******************************************************************************/
  
 void CamUart_SendDisconnectFrame(void){
 	uint8_t frame[5] = {DISCONNECT_SOF[0], DISCONNECT_SOF[1], DISCONNECT_SOF[2]};
+	uint8_t i = 3;
 	
-	frame[3] = this_device_address_;
-	frame[4] = CamUart_CalculateChecksum(frame, 4);								
+	frame[i++] = this_device_address_;
+	frame[i++] = CamUart_CalculateChecksum(frame, 4);								
 	
-	TM_USART_Send(USART_USED, frame, 5);
+	TM_USART_Send(USART_USED, frame, i);
 }
 
 /******************************************************************************/
  
 void CamUart_SendConfigFrame(const ConfigCommand data){
 	uint8_t frame[9] = {CONFIG_SOF[0], CONFIG_SOF[1], CONFIG_SOF[2]};
+	uint8_t i = 3;
 	
-	frame[3] = this_device_address_;
-	frame[4] = data.accel;
-	frame[5] = data.decel;
-	frame[6] = (uint8_t)(data.cable_lenght >> 8);
-	frame[7] = (uint8_t)data.cable_lenght;
-	frame[8] = CamUart_CalculateChecksum(frame, 8);								
+	frame[i++] = this_device_address_;
+	frame[i++] = data.accel;
+	frame[i++] = (uint8_t)(data.cable_lenght >> 8);
+	frame[i++] = (uint8_t)data.cable_lenght;
+	frame[i++] = CamUart_CalculateChecksum(frame, 8);								
 	
-	TM_USART_Send(USART_USED, frame, 9);
+	TM_USART_Send(USART_USED, frame, i);
 }
 
 /******************************************************************************/
  
 void CamUart_SendControlFrame(const ControlCommand data){
 	uint8_t frame[7] = {CONTROL_SOF[0], CONTROL_SOF[1], CONTROL_SOF[2]};
+	uint8_t i = 3;
 	
-	frame[3] = this_device_address_;
-	frame[4] = data.speed;
-	frame[5] = (uint8_t)data.emergency_stop;
-	frame[6] = CamUart_CalculateChecksum(frame, 5);								
+	frame[i++] = this_device_address_;
+	frame[i++] = data.speed;
+	frame[i++] = (uint8_t)data.emergency_stop;
+	frame[i++] = CamUart_CalculateChecksum(frame, 5);								
 	
-	TM_USART_Send(USART_USED, frame, 6);
+	TM_USART_Send(USART_USED, frame, i);
 }
 
 /******************************************************************************/
@@ -235,10 +237,6 @@ void TM_USART1_ReceiveHandler(uint8_t c){
 			rx_buffer_[rx_buffer_level_].accel = c;
 			state++;
 			break;
-		case e_decel:
-			rx_buffer_[rx_buffer_level_].decel = c;
-			state++;
-			break;
 		case e_clenghtH:
 			rx_buffer_[rx_buffer_level_].cable_lenght = c << 8;
 			state++;
@@ -266,7 +264,6 @@ void TM_USART1_ReceiveHandler(uint8_t c){
 			sum += rx_buffer_[rx_buffer_level_].aimed_speed;
 			sum += rx_buffer_[rx_buffer_level_].actual_speed;
 			sum += rx_buffer_[rx_buffer_level_].accel;
-			sum += rx_buffer_[rx_buffer_level_].decel;
 			sum += rx_buffer_[rx_buffer_level_].cable_lenght >> 8;
 			sum += (uint8_t)rx_buffer_[rx_buffer_level_].cable_lenght;
 			sum += rx_buffer_[rx_buffer_level_].connected_interface_address;

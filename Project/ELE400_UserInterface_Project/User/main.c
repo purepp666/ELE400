@@ -133,7 +133,6 @@ int main(void) {
 			// If controller just appeared online, sets initial values
 			if(timer_counter_ >= DISCOVERY_DELAY){
 				conf_command.accel = rx_data.accel;
-				conf_command.decel = rx_data.decel;
 				conf_command.cable_lenght = rx_data.cable_lenght;
 				cont_command.speed = rx_data.aimed_speed;
 			}
@@ -155,8 +154,6 @@ int main(void) {
 				TM_USART_Send(USART1,(uint8_t*)&rx_data.aimed_speed,1);
 				TM_USART_Puts(USART1,"\nAccel: ");
 				TM_USART_Send(USART1,&rx_data.accel,2);
-				TM_USART_Puts(USART1,"\nDecel: ");
-				TM_USART_Send(USART1,&rx_data.decel,1);
 				TM_USART_Puts(USART1,"\nPosition: ");
 				TM_USART_Send(USART1,(uint8_t*)&rx_data.position,2);
 				TM_USART_Puts(USART1,"\nCable Length: ");
@@ -312,7 +309,6 @@ bool HandleTxErrors(CamRxData rx_data){
 	
 	// If a config is different from expected
 	if((conf_command.accel != rx_data.accel)
-		|| (conf_command.decel != rx_data.decel)
 		|| (conf_command.cable_lenght != rx_data.cable_lenght) 
 		|| (cont_command.speed != rx_data.aimed_speed)){
 		// Sets an error flag
@@ -366,7 +362,6 @@ void SendCommand(uint8_t command){
 			break;
 		case CONFIGURE:
 			conf_command.accel = CamScreen_GetAccel();-------
-			conf_command.decel = CamScreen_GetDecel();-------
 			conf_command.cable_lenght = CamScreen_GetCableLenght();----------
 			CamUart_SendConfigFrame(conf_command);
 			break;

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Targets\STM32F429_Discovery\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Targets\STM32F429_Discovery\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Wed Mar 23 16:25:43 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Tue Mar 29 12:07:21 2016
 <BR><P>
 <H3>Maximum Stack Usage =        256 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1115,7 +1115,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b9]"></a>HandleTxErrors</STRONG> (Thumb, 118 bytes, Stack size 20 bytes, main.o(.text))
+<P><STRONG><a name="[b9]"></a>HandleTxErrors</STRONG> (Thumb, 110 bytes, Stack size 20 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = HandleTxErrors
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1126,7 +1126,7 @@ Global Symbols
 <P><STRONG><a name="[b7]"></a>CustomTimerHandler</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[7c]"></a>main</STRONG> (Thumb, 320 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[7c]"></a>main</STRONG> (Thumb, 296 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = main &rArr; CamUart_Init &rArr; TM_USART_Init &rArr; TM_USART_INT_Init &rArr; TM_UART5_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_SendControlFrame
@@ -1235,7 +1235,7 @@ Global Symbols
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_CalculateChecksum
 </UL>
 
-<P><STRONG><a name="[c3]"></a>CamUart_SendConfigFrame</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, camuart_communication_frames.o(.text), UNUSED)
+<P><STRONG><a name="[c3]"></a>CamUart_SendConfigFrame</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, camuart_communication_frames.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART_Send
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_CalculateChecksum
 </UL>
@@ -1259,7 +1259,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a2]"></a>TM_USART1_ReceiveHandler</STRONG> (Thumb, 332 bytes, Stack size 20 bytes, camuart_communication_frames.o(.text))
+<P><STRONG><a name="[a2]"></a>TM_USART1_ReceiveHandler</STRONG> (Thumb, 306 bytes, Stack size 20 bytes, camuart_communication_frames.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TM_USART1_ReceiveHandler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler

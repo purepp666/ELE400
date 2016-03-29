@@ -28,7 +28,6 @@
 	 */
 	typedef struct {
 		uint8_t accel;
-		uint8_t decel;
 		uint16_t cable_lenght;
 	}ConfigCommand;
 	/**
@@ -40,7 +39,6 @@
 		int8_t aimed_speed;
 		int8_t actual_speed;
 		uint8_t accel;
-		uint8_t decel;
 		uint16_t cable_lenght;
 		uint8_t connected_interface_address;
 		uint8_t error;
