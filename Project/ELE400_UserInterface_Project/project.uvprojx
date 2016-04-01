@@ -545,6 +545,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_dma.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -579,6 +599,51 @@
               <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_stmpe811.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stmpe811.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -629,6 +694,16 @@
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamProcessScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamProcessScreen.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamScreen.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1211,6 +1286,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_dma.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1245,6 +1340,51 @@
               <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_stmpe811.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stmpe811.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1295,6 +1435,16 @@
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamProcessScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamProcessScreen.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamScreen.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1876,6 +2026,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_dma.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1910,6 +2080,51 @@
               <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_stmpe811.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stmpe811.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1960,6 +2175,16 @@
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamProcessScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamProcessScreen.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamScreen.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2541,6 +2766,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver_working\src\stm32f4xx_dma.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2575,6 +2820,51 @@
               <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_stmpe811.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stmpe811.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2625,6 +2915,16 @@
               <FileName>CamUart_communication_frames.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_ELE400_Librairies\CamUart_communication_frames.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamProcessScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamProcessScreen.c</FilePath>
+            </File>
+            <File>
+              <FileName>CamScreen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_ELE400_Librairies\CamScreen.c</FilePath>
             </File>
           </Files>
         </Group>

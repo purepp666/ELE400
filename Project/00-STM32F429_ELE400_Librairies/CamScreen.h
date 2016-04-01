@@ -22,7 +22,7 @@ typedef struct {
 } T_Config_Setting;
 
 typedef enum {
-	Direction_Avant,
+	Direction_Avant, 
 	Direction_Arriere
 } T_Direction;
 
