@@ -2,6 +2,8 @@
 
 #ifndef ECRAN_IMAGE_H
 #define ECRAN_IMAGE_H
+
+
 #include "defines.h"
 #include "tm_stm32f4_ili9341.h"
 #include "tm_stm32f4_stmpe811.h"

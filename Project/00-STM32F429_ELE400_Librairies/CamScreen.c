@@ -1,6 +1,6 @@
 
 
-#include "Ecran_Image.h"
+#include "CamScreen.h"
 
 /* TM_STMPE811_TouchData instance */
 	TM_STMPE811_TouchData touchData;
