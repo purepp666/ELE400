@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.18.0.0
 Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: John Doe, test, LIC=GE72Z-J7F0Y-GNJA5-GVBLY-I9FMT-GUG3P
+License Information: david prairie-bourgault, école technologique supérieur, LIC=P6F30-B6JP4-BWA2G-V1P8E-0VQYB-KF1EY
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.18
-Toolchain Path:  F:\Keil_v5\ARM\ARMCC\Bin
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 1 (build 61)
 Assembler:       Armasm.exe V5.06 update 1 (build 61)
 Linker/Locator:  ArmLink.exe V5.06 update 1 (build 61)
@@ -21,25 +21,55 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
 Dialog DLL:      TCM.DLL V1.14.8.0
  
 <h2>Project:</h2>
-F:\ELE400_GIT\ELE400\Project\ELE400_UserInterface_Project\project.uvprojx
-Project File Date:  03/23/2016
+C:\Users\admin\Documents\ELE400\ELE400\Project\ELE400_UserInterface_Project\project.uvprojx
+Project File Date:  04/01/2016
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'F:\Keil_v5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F429-Discovery'
 assembling startup_stm32f429_439xx.s...
+compiling misc.c...
+compiling stm32f4xx_rcc.c...
+compiling stm32f4xx_gpio.c...
+compiling stm32f4xx_usart.c...
+compiling tm_stm32f4_usart.c...
+compiling tm_stm32f4_gpio.c...
+compiling tm_stm32f4_delay.c...
+compiling tm_stm32f4_disco.c...
+compiling main.c...
+compiling stm32f4xx_it.c...
+compiling system_stm32f4xx.c...
 compiling CamUart_communication_frames.c...
+compiling Ecran_Image.c...
+..\00-STM32F429_ELE400_Librairies\Ecran_Image.c(268): warning:  #188-D: enumerated type mixed with another type
+        controle_info.ControllerStatus = 0;
+..\00-STM32F429_ELE400_Librairies\Ecran_Image.c(270): warning:  #188-D: enumerated type mixed with another type
+        controle_info.Direction = 0; // 0->Avant 1->Arrière
+..\00-STM32F429_ELE400_Librairies\Ecran_Image.c(459): warning:  #177-D: variable "j" was declared but never referenced
+                int j;
+..\00-STM32F429_ELE400_Librairies\Ecran_Image.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=8084 RO-data=496 RW-data=208 ZI-data=2240  
-FromELF: creating hex file...
-".\Targets\STM32F429_Discovery\project.axf" - 0 Error(s), 0 Warning(s).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_Font_11x18 (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_Font_16x26 (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_Font_7x10 (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_ILI9341_Button_Add (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_ILI9341_Button_DeleteAll (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_ILI9341_Button_DrawAll (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_ILI9341_Button_Enable (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_ILI9341_Fill (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_ILI9341_Puts (referred from ecran_image.o).
+.\Targets\STM32F429_Discovery\project.axf: Error: L6218E: Undefined symbol TM_STMPE811_ReadTouch (referred from ecran_image.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 10 error messages.
+".\Targets\STM32F429_Discovery\project.axf" - 10 Error(s), 3 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  F:\ELE400_GIT\ELE400\Project\ELE400_UserInterface_Project\RTE
-  F:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  C:\Users\admin\Documents\ELE400\ELE400\Project\ELE400_UserInterface_Project\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Target not created.
+Build Time Elapsed:  00:00:20
 </pre>
 </body>
 </html>
