@@ -55,3 +55,5 @@
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_button.h
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h
 .\targets\stm32f429_discovery\camscreen.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_ELE400_Librairies\CamProcessScreen.h
+.\targets\stm32f429_discovery\camscreen.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
