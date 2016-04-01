@@ -16,6 +16,10 @@
 #include "stm32f4xx.h"
 #include "defines.h"
 
+	/******************************************************************************/
+	/*            										Defines	            	  				            */
+	/******************************************************************************/ 
+
 	/**
 	 * @brief control frame informations
 	 */
@@ -44,6 +48,10 @@
 		uint8_t error;
 	}CamRxData;
 
+	/******************************************************************************/
+	/*            										Functions            	  				            */
+	/******************************************************************************/ 
+	
 	/**
 	 * @brief  This function initialize everything needed to CamUart_unicate to the XBee module
 	 * @param  this_device_address: address of your device

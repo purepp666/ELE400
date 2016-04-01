@@ -1,59 +1,115 @@
+/**
+ * @author  
+ * @email   
+ * @version v1
+ * @ide     Keil uVision
+ * @brief   
+ */
+
 #ifndef CAM_PROCESS_SCREEN_H
-#define CAM_PROCESS_SCREEN_H
+	#define CAM_PROCESS_SCREEN_H
 
-#include <stdbool.h>
-#include "stm32f4xx.h"
-#include "defines.h"
+	#include <stdbool.h>
+	#include "stm32f4xx.h"
+	#include "defines.h"
+	#include "CamScreen.h"
 
-#define NombreErreur 8 // nombre de différentes erreurs possibles.
+	
 
-extern uint16_t Fleche_Haut_18x23[];
-
-
-extern uint16_t Fleche_Bas_18x23[];
-
-
-
-extern uint16_t Fleche_Droite_23x18[];
-
-
-extern uint16_t Fleche_Gauche_23x18[];
-
-
-typedef struct {
-	uint8_t Accelation;      
-	uint16_t LenghtCable;      
-} T_Config_Setting;
-
-typedef enum {
-	Direction_Avant, 
-	Direction_Arriere
-} T_Direction;
-
-typedef enum {
-	Controller_Offline,
-	Controller_Online
-} T_ControllerStatus;
-
-
-typedef struct {
-	char* StrErreur; //contient la string de l'erreur
-	uint8_t ErreurPresente; //Mettre à 1 à l'emplacement correspondant si l'erreur est active sinon à 0;
-} T_Erreur;
-
-
-typedef struct {
-	T_ControllerStatus ControllerStatus; //0->Offline 1->Online
-	uint8_t BattLevel;
-	T_Direction Direction; // 0->Avant 1->Arrière
-	uint8_t VitesseVoulu;
-	uint8_t VitesseReel;
-	uint16_t Position;
-	T_Erreur *TableauErreur[NombreErreur]; 
-} T_Controle_Information;
-
-
-void Init(T_Config_Setting *setting, T_Controle_Information * controle_info);
+	/******************************************************************************/
+	/*            										Functions            	  				            */
+	/******************************************************************************/
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_Init(void);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_ControllerOnline(bool state);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_UpdateSpeed(uint8_t speed);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_UpdateBattLevel(uint8_t level);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_UpdatePosition(uint16_t pos);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_UpdateAccel(uint8_t accel);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_UpdateCableLenght(uint16_t speed);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_Errors(uint8_t flags);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_SetConnected(bool state);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_ReadButtons(uint8_t button_pressed);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	void CamScreenP_RefreshScreen(void);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	uint8_t CamScreenP_GetAccel(void);
+	
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	uint16_t CamScreenP_GetCableLenght(void);
 
 
 #endif

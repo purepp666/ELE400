@@ -15,6 +15,7 @@
 #include "tm_stm32f4_delay.h"
 #include "../00-STM32F429_ELE400_Librairies/CamUart_communication_frames.h"
 #include "tm_stm32f4_disco.h"
+#include "../00-STM32F429_ELE400_Librairies/CamProcessScreen.h"
 
 
 #define DEBUG
@@ -108,11 +109,13 @@ ControlCommand cont_command;
 
 int main(void) {
 	
+	
 	CamRxData rx_data;									// Data read from uart
 	bool errors_encountered = false;		// Indicates an error has been encountered
 	TM_DELAY_Timer_t *timer;						// timer used
 	
 	SystemInit();
+	
 	
 	// Init interface address
 	CamUart_Init(ADDRESS);
@@ -124,6 +127,9 @@ int main(void) {
 	// Creates new timer
 	timer = TM_DELAY_TimerCreate(100, 1, 1, &CustomTimerHandler,0);
 	TM_DISCO_ButtonInit();
+	
+	// init screen and show intro screen
+	CamScreenP_Init();
 
 	while(1){
 	
@@ -228,7 +234,6 @@ int main(void) {
 		/********************** Screen Thread ************************************/
 
 		//CamScreen_RefreshScreen();
-
 	}
 	
 }
