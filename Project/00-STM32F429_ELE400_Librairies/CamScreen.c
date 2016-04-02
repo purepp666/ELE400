@@ -442,7 +442,7 @@ void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting){
 /******************************************************************************/
 
 void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information){
-	
+	int i=0;
 	if(Controle_Information->ControllerStatus){
 		TM_ILI9341_Puts(55,3,"Online ", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	}
@@ -474,8 +474,16 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 	TM_ILI9341_Puts(95,133, str_, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	
 	//effacer error avant d'afficher ou faire refresh
-	for(i=0;i<NombreErreur;++i){
-		int j;
+	
+	
+	//if(Controle_Information->errors_flags && CABLE_END == CABLE_END){
+		TM_ILI9341_Puts(10,163,"-End of cable reached", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		
+		
+		
+		// il n'y a pas 
+		for(i=0;i<NOMBREERREUR;++i){
+			int j;
 		/*
 		if(Controle_Information->TableauErreur+i
 		sprintf(str_, "%s",Controle_Information->TableauErreur+i);

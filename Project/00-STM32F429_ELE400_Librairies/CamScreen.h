@@ -16,7 +16,7 @@
 #include "tm_stm32f4_ili9341_button.h"
 #include "tm_stm32f4_disco.h"
 
-#define NombreErreur 8 // nombre de différentes erreurs possibles.
+#define NOMBREERREUR 11 // nombre de différentes erreurs possibles.
 
 
 /******************************************************************************/

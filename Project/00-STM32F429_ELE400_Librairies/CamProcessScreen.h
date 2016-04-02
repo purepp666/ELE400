@@ -14,7 +14,7 @@
 	#include "defines.h"
 	#include "CamScreen.h"
 
-	
+extern uint8_t Status_Ecran_;
 
 	/******************************************************************************/
 	/*            										Functions            	  				            */
