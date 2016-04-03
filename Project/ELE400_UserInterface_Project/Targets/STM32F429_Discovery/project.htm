@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Targets\STM32F429_Discovery\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Targets\STM32F429_Discovery\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Fri Apr 01 19:03:36 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sun Apr 03 14:21:02 2016
 <BR><P>
-<H3>Maximum Stack Usage =        280 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        288 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; CamScreenP_Init &rArr; CamScreen_Init &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 <P>
@@ -269,7 +269,7 @@ Global Symbols
 <P><STRONG><a name="[168]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[7e]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 288 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; CamScreenP_Init &rArr; CamScreen_Init &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1164,38 +1164,81 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(RESET)
 </UL>
-<P><STRONG><a name="[ad]"></a>TM_GPIO_GetPortSource</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, tm_stm32f4_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetFreePins
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetUsedPins
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_DisableClock
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_DeInit
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_EnableClock
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_Init
+<P><STRONG><a name="[124]"></a>TimingDelay_Decrement</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, tm_stm32f4_delay.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TimingDelay_Decrement
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[ac]"></a>TM_GPIO_INT_Init</STRONG> (Thumb, 130 bytes, Stack size 36 bytes, tm_stm32f4_gpio.o(.text))
+<P><STRONG><a name="[113]"></a>TM_DELAY_Init</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_STMPE811_Init
+</UL>
+
+<P><STRONG><a name="[11b]"></a>TM_DELAY_EnableDelayTimer</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[20c]"></a>TM_DELAY_DisableDelayTimer</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
+
+<P><STRONG><a name="[ac]"></a>TM_DELAY_TimerCreate</STRONG> (Thumb, 68 bytes, Stack size 32 bytes, tm_stm32f4_delay.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = TM_DELAY_TimerCreate &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[ae]"></a>TM_DELAY_TimerDelete</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, tm_stm32f4_delay.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+</UL>
+
+<P><STRONG><a name="[120]"></a>TM_DELAY_TimerStop</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[121]"></a>TM_DELAY_TimerStart</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[20d]"></a>TM_DELAY_TimerReset</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
+
+<P><STRONG><a name="[20e]"></a>TM_DELAY_TimerAutoReload</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
+
+<P><STRONG><a name="[20f]"></a>TM_DELAY_TimerAutoReloadValue</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
+
+<P><STRONG><a name="[b1]"></a>TM_GPIO_GetPortSource</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, tm_stm32f4_gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetFreePins
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetUsedPins
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_DisableClock
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_DeInit
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_EnableClock
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_Init
+</UL>
+
+<P><STRONG><a name="[b0]"></a>TM_GPIO_INT_Init</STRONG> (Thumb, 130 bytes, Stack size 36 bytes, tm_stm32f4_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = TM_GPIO_INT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
 </UL>
-<BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
+<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_InitAlternate
 </UL>
 
-<P><STRONG><a name="[ae]"></a>TM_GPIO_INT_EnableClock</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text))
+<P><STRONG><a name="[b2]"></a>TM_GPIO_INT_EnableClock</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = TM_GPIO_INT_EnableClock
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
 </UL>
-<BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
+<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_InitAlternate
 </UL>
 
-<P><STRONG><a name="[af]"></a>TM_GPIO_Init</STRONG> (Thumb, 34 bytes, Stack size 28 bytes, tm_stm32f4_gpio.o(.text))
+<P><STRONG><a name="[b3]"></a>TM_GPIO_Init</STRONG> (Thumb, 34 bytes, Stack size 28 bytes, tm_stm32f4_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = TM_GPIO_Init &rArr; TM_GPIO_INT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_EnableClock
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_Init
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_EnableClock
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Init
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DISCO_ButtonInit
@@ -1205,8 +1248,8 @@ Global Symbols
 <P><STRONG><a name="[93]"></a>TM_GPIO_InitAlternate</STRONG> (Thumb, 92 bytes, Stack size 44 bytes, tm_stm32f4_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_EnableClock
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_Init
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_EnableClock
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_INT_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART1_InitPins
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART2_InitPins
@@ -1227,87 +1270,44 @@ Global Symbols
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_I2C3_INT_InitPins
 </UL>
 
-<P><STRONG><a name="[b0]"></a>TM_GPIO_DeInit</STRONG> (Thumb, 66 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
+<P><STRONG><a name="[b4]"></a>TM_GPIO_DeInit</STRONG> (Thumb, 66 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
 </UL>
 
-<P><STRONG><a name="[20c]"></a>TM_GPIO_SetPinAsInput</STRONG> (Thumb, 38 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[210]"></a>TM_GPIO_SetPinAsInput</STRONG> (Thumb, 38 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[20d]"></a>TM_GPIO_SetPinAsOutput</STRONG> (Thumb, 46 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[211]"></a>TM_GPIO_SetPinAsOutput</STRONG> (Thumb, 46 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[20e]"></a>TM_GPIO_SetPinAsAnalog</STRONG> (Thumb, 38 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[212]"></a>TM_GPIO_SetPinAsAnalog</STRONG> (Thumb, 38 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[20f]"></a>TM_GPIO_SetPinAsAlternate</STRONG> (Thumb, 48 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[213]"></a>TM_GPIO_SetPinAsAlternate</STRONG> (Thumb, 48 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[210]"></a>TM_GPIO_SetPullResistor</STRONG> (Thumb, 46 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[214]"></a>TM_GPIO_SetPullResistor</STRONG> (Thumb, 46 bytes, Stack size 20 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[211]"></a>TM_GPIO_Lock</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[215]"></a>TM_GPIO_Lock</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[212]"></a>TM_GPIO_GetPinSource</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[216]"></a>TM_GPIO_GetPinSource</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[b1]"></a>TM_GPIO_INT_DisableClock</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
+<P><STRONG><a name="[b5]"></a>TM_GPIO_INT_DisableClock</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
 </UL>
 
-<P><STRONG><a name="[b2]"></a>TM_GPIO_GetUsedPins</STRONG> (Thumb, 14 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
+<P><STRONG><a name="[b6]"></a>TM_GPIO_GetUsedPins</STRONG> (Thumb, 14 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
 </UL>
 
-<P><STRONG><a name="[b3]"></a>TM_GPIO_GetFreePins</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
+<P><STRONG><a name="[b7]"></a>TM_GPIO_GetFreePins</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, tm_stm32f4_gpio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
 </UL>
-
-<P><STRONG><a name="[124]"></a>TimingDelay_Decrement</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, tm_stm32f4_delay.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TimingDelay_Decrement
-</UL>
-<BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
-</UL>
-
-<P><STRONG><a name="[113]"></a>TM_DELAY_Init</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_STMPE811_Init
-</UL>
-
-<P><STRONG><a name="[11b]"></a>TM_DELAY_EnableDelayTimer</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[213]"></a>TM_DELAY_DisableDelayTimer</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
-
-<P><STRONG><a name="[b4]"></a>TM_DELAY_TimerCreate</STRONG> (Thumb, 68 bytes, Stack size 32 bytes, tm_stm32f4_delay.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = TM_DELAY_TimerCreate &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
-</UL>
-<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[b6]"></a>TM_DELAY_TimerDelete</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, tm_stm32f4_delay.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
-</UL>
-
-<P><STRONG><a name="[120]"></a>TM_DELAY_TimerStop</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[121]"></a>TM_DELAY_TimerStart</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[214]"></a>TM_DELAY_TimerReset</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
-
-<P><STRONG><a name="[215]"></a>TM_DELAY_TimerAutoReload</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
-
-<P><STRONG><a name="[216]"></a>TM_DELAY_TimerAutoReloadValue</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, tm_stm32f4_delay.o(.text), UNUSED)
 
 <P><STRONG><a name="[b8]"></a>TM_DISCO_LedInit</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, tm_stm32f4_disco.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
+<BR><BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
 </UL>
 
 <P><STRONG><a name="[b9]"></a>TM_DISCO_ButtonInit</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, tm_stm32f4_disco.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = TM_DISCO_ButtonInit &rArr; TM_GPIO_Init &rArr; TM_GPIO_INT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
+<BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1379,8 +1379,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_INT_Fill
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_ClrScreen
+<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_ClrScreen
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranControle
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranAccueil
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Init
@@ -1407,7 +1407,7 @@ Global Symbols
 <P><STRONG><a name="[c7]"></a>TM_ILI9341_Init</STRONG> (Thumb, 142 bytes, Stack size 32 bytes, tm_stm32f4_ili9341.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
+<BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_SPI_Init
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_SPI_DMA_Init
@@ -1458,9 +1458,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Putc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranControle
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranConfig
-<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
+<BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranConfig
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranControle
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranControle
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranAccueil
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Draw
@@ -1508,10 +1508,10 @@ Global Symbols
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_DrawPixel
 </UL>
 
-<P><STRONG><a name="[130]"></a>TM_ILI9341_Button_Add</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, tm_stm32f4_ili9341_button.o(.text))
+<P><STRONG><a name="[131]"></a>TM_ILI9341_Button_Add</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, tm_stm32f4_ili9341_button.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = TM_ILI9341_Button_Add
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
+<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranControle
 </UL>
 
@@ -1532,14 +1532,14 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Draw
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
+<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranControle
 </UL>
 
 <P><STRONG><a name="[218]"></a>TM_ILI9341_Button_Touch</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, tm_stm32f4_ili9341_button.o(.text), UNUSED)
 
-<P><STRONG><a name="[131]"></a>TM_ILI9341_Button_Enable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, tm_stm32f4_ili9341_button.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
+<P><STRONG><a name="[132]"></a>TM_ILI9341_Button_Enable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, tm_stm32f4_ili9341_button.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
 </UL>
 
 <P><STRONG><a name="[219]"></a>TM_ILI9341_Button_Disable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, tm_stm32f4_ili9341_button.o(.text), UNUSED)
@@ -1553,7 +1553,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Delete
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
+<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranConfig
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranControle
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranAccueil
 </UL>
@@ -2127,11 +2127,12 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
 <P><STRONG><a name="[7f]"></a>main</STRONG> (Thumb, 300 bytes, Stack size 24 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = main &rArr; CamScreenP_Init &rArr; CamScreen_Init &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
+<BR><BR>[Stack]<UL><LI>Max Depth = 288 + Unknown Stack Size
+<LI>Call Chain = main &rArr; CamScreenP_Init &rArr; CamScreen_Init &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerStart
 <LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerStop
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerCreate
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerCreate
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_EnableDelayTimer
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_Init
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART_Send
@@ -2266,10 +2267,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[11d]"></a>CamScreenP_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, camprocessscreen.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = CamScreenP_Init &rArr; CamScreen_Init &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
+<P><STRONG><a name="[11d]"></a>CamScreenP_Init</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, camprocessscreen.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
+<LI>Call Chain = CamScreenP_Init &rArr; CamScreen_Init &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_Init
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranControle
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_Init
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranControle
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_EcranAccueil
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_ButtonsState
@@ -2288,7 +2291,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_Init
 </UL>
 
-<P><STRONG><a name="[12e]"></a>CamScreen_ClrScreen</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, camscreen.o(.text), UNUSED)
+<P><STRONG><a name="[12f]"></a>CamScreen_ClrScreen</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, camscreen.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Fill
 </UL>
 
@@ -2310,11 +2313,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_Init
 </UL>
 
-<P><STRONG><a name="[12f]"></a>CamScreen_EcranConfig</STRONG> (Thumb, 460 bytes, Stack size 16 bytes, camscreen.o(.text), UNUSED)
+<P><STRONG><a name="[130]"></a>CamScreen_EcranConfig</STRONG> (Thumb, 460 bytes, Stack size 16 bytes, camscreen.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_DeleteAll
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Enable
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Enable
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_DrawAll
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Add
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Add
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Puts
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Fill
 </UL>
@@ -2324,51 +2327,64 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_DeleteAll
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_DrawAll
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Add
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Button_Add
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Puts
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Fill
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_Init
 </UL>
 
-<P><STRONG><a name="[132]"></a>CamScreen_RefreshEcranConfig</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, camscreen.o(.text), UNUSED)
+<P><STRONG><a name="[133]"></a>CamScreen_RefreshEcranConfig</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, camscreen.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Puts
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 
-<P><STRONG><a name="[134]"></a>CamScreen_RefreshEcranControle</STRONG> (Thumb, 250 bytes, Stack size 24 bytes, camscreen.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Puts
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<P><STRONG><a name="[12e]"></a>CamScreen_RefreshEcranControle</STRONG> (Thumb, 436 bytes, Stack size 32 bytes, camscreen.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
+<LI>Call Chain = CamScreen_RefreshEcranControle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
+</UL>
+<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Puts
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_Init
 </UL>
 
-<P><STRONG><a name="[b5]"></a>malloc</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, h1_alloc.o(.text))
+<P><STRONG><a name="[225]"></a>CamScreen_ArretUrgence</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, camscreen.o(.text), UNUSED)
+
+<P><STRONG><a name="[ad]"></a>malloc</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, h1_alloc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
 </UL>
 <BR>[Calls]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerCreate
+<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerCreate
 </UL>
 
-<P><STRONG><a name="[b7]"></a>free</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, h1_free.o(.text))
+<P><STRONG><a name="[af]"></a>free</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, h1_free.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = free
 </UL>
 <BR>[Calls]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerDelete
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerDelete
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
 </UL>
 
-<P><STRONG><a name="[133]"></a>__2sprintf</STRONG> (Thumb, 34 bytes, Stack size 32 bytes, noretval__2sprintf.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
+<P><STRONG><a name="[134]"></a>__2sprintf</STRONG> (Thumb, 34 bytes, Stack size 32 bytes, noretval__2sprintf.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120 + Unknown Stack Size
+<LI>Call Chain = __2sprintf &rArr; _printf_char_common &rArr; __printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranControle
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranConfig
+<BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranConfig
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_RefreshEcranControle
 </UL>
 
-<P><STRONG><a name="[138]"></a>__printf</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, __printf.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_percent
+<P><STRONG><a name="[138]"></a>__printf</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, __printf.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
+<LI>Call Chain = __printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_percent
 </UL>
 <BR>[Called By]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
@@ -2381,21 +2397,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_d
 </UL>
 
-<P><STRONG><a name="[225]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[226]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[1]"></a>__rt_heap_escrow</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[0]"></a>__rt_heap_expand</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[135]"></a>__rt_heap_descriptor</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_heap_descriptor_intlibspace.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 </UL>
 
-<P><STRONG><a name="[226]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+<P><STRONG><a name="[227]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
 
-<P><STRONG><a name="[227]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+<P><STRONG><a name="[228]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
 
 <P><STRONG><a name="[5]"></a>_terminate_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
 
@@ -2406,7 +2422,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 
 <P><STRONG><a name="[13c]"></a>__Heap_Broken</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
@@ -2436,29 +2452,32 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_int_dec
 </UL>
 
-<P><STRONG><a name="[137]"></a>_printf_char_common</STRONG> (Thumb, 32 bytes, Stack size 64 bytes, _printf_char_common.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__printf
+<P><STRONG><a name="[137]"></a>_printf_char_common</STRONG> (Thumb, 32 bytes, Stack size 64 bytes, _printf_char_common.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88 + Unknown Stack Size
+<LI>Call Chain = _printf_char_common &rArr; __printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 
 <P><STRONG><a name="[6e]"></a>_sputc</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, _sputc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<BR><BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> noretval__2sprintf.o(.text)
 </UL>
-<P><STRONG><a name="[228]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[229]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[141]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[229]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[22a]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[13b]"></a>__Heap_ProvideMemory</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, h1_extend.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __Heap_ProvideMemory &rArr; free
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full
@@ -2474,11 +2493,11 @@ Global Symbols
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Broken
 </UL>
 
-<P><STRONG><a name="[22a]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[22b]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[22b]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[22c]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[22c]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[22d]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[7b]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -2536,9 +2555,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_fp_1
 </UL>
 
-<P><STRONG><a name="[22d]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[22e]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 
-<P><STRONG><a name="[22e]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[22f]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 <P>
 <H3>
 Local Symbols

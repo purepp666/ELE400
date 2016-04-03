@@ -16,7 +16,7 @@
 #include "tm_stm32f4_ili9341_button.h"
 #include "tm_stm32f4_disco.h"
 
-#define NOMBREERREUR 11 // nombre de différentes erreurs possibles.
+#define NOMBRE_ERREUR 11 // nombre de différentes erreurs possibles.
 
 
 /******************************************************************************/
@@ -66,6 +66,9 @@
 	#define BUTTON_CONFIG 					0x00200
 	#define SCREEN_PRESSED 					0x00400
 	#define BUTTON_CONTROL_SCREEN 	0x00800
+	
+	
+
 
 	/******************************************************************************/
 	/*            										Functions            	  				            */
@@ -97,6 +100,13 @@
 	 * @param  data: 
 	 * @retval None
 	 */	
+	void CamScreen_ArretUrgence(void);
+
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval None
+	 */	
 	void CamScreen_EcranControle(void);
 
 	/**
@@ -112,6 +122,9 @@
 	 * @retval None
 	 */	
 	void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information);
+	
+	
+	
 
 	/**
 	 * @brief  

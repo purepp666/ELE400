@@ -581,11 +581,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
@@ -594,6 +589,11 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_disco.c</FileName>
@@ -1322,11 +1322,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
@@ -1335,6 +1330,11 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_disco.c</FileName>
@@ -2062,11 +2062,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
@@ -2075,6 +2070,11 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_disco.c</FileName>
@@ -2802,11 +2802,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
@@ -2815,6 +2810,11 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_disco.c</FileName>

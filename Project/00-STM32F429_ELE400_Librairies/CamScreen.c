@@ -407,7 +407,7 @@ void CamScreen_EcranControle(void){
 	/* Draw button_s */
 	TM_ILI9341_Button_DrawAll();
 	
-	TM_ILI9341_Puts(175,30, "S\nk-R\ny-u\n  u\n  n\n  n\n  e\n  r", &TM_Font_16x26, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
+	TM_ILI9341_Puts(180,30, "S\nk-R\ny-u\n  u\n  n\n  n\n  e\n  r", &TM_Font_16x26, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
 	
 	TM_ILI9341_Puts(5,3, "Status:", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	
@@ -474,21 +474,37 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 	TM_ILI9341_Puts(95,133, str_, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	
 	//effacer error avant d'afficher ou faire refresh
-	
-	
-	//if(Controle_Information->errors_flags && CABLE_END == CABLE_END){
-		TM_ILI9341_Puts(10,163,"-End of cable reached", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-		
-		
-		
-		// il n'y a pas 
-		for(i=0;i<NOMBREERREUR;++i){
-			int j;
-		/*
-		if(Controle_Information->TableauErreur+i
-		sprintf(str_, "%s",Controle_Information->TableauErreur+i);
-		TM_ILI9341_Puts(10,160,"Erreurs:", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-		*/
+	for(i=173;i<=264;i+=13){
+		TM_ILI9341_Puts(10,i,"                             ", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+	}
+	i= 173 ;
+	if((Controle_Information->errors_flags & BATT_TEMP) == BATT_TEMP){
+		TM_ILI9341_Puts(10,i,"-Battery temperature high", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		i+=13;
+	}
+	if((Controle_Information->errors_flags & MOTOR_FORCES) == MOTOR_FORCES){
+		TM_ILI9341_Puts(10,i,"-Motor forces to reach speed", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		i+=13;
+	}
+	if((Controle_Information->errors_flags & INVALID_COMMAND) == INVALID_COMMAND){
+		TM_ILI9341_Puts(10,i,"-Battery temperature high", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		i+=13;
+	}
+	if((Controle_Information->errors_flags & OBSTACLE) == OBSTACLE){
+		TM_ILI9341_Puts(10,i,"-Obstacle on the cable", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		i+=13;
+	}
+	if((Controle_Information->errors_flags & BATT_LOW) == BATT_LOW){
+		TM_ILI9341_Puts(10,i,"-Battery low", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		i+=13;
+	}
+	if((Controle_Information->errors_flags & CABLE_END) == CABLE_END){
+		TM_ILI9341_Puts(10,i,"-End of cable reached", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		i+=13;
+	}
+	if((Controle_Information->errors_flags & INTERFACES_CONFLICT)	== INTERFACES_CONFLICT){
+		TM_ILI9341_Puts(10,i,"-Other interfaces try\n to connect", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		//i+=26;
 	}
 	
 }
@@ -498,3 +514,8 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 void CamScreen_ClrScreen(void){
 	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 }
+/******************************************************************************/
+void CamScreen_ArretUrgence(void){
+	
+}
+/******************************************************************************/
