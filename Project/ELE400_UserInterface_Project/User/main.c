@@ -18,7 +18,7 @@
 #include "../00-STM32F429_ELE400_Librairies/CamProcessScreen.h"
 
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 	#include "tm_stm32f4_usart.h"

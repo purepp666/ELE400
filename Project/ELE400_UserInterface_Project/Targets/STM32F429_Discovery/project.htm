@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Targets\STM32F429_Discovery\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Targets\STM32F429_Discovery\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sun Apr 03 19:18:17 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sun Apr 03 19:37:24 2016
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1093,12 +1093,8 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART_INT_GetUsart
 </UL>
 
-<P><STRONG><a name="[a8]"></a>TM_USART_Puts</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, tm_stm32f4_usart.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = TM_USART_Puts
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART_INT_GetUsart
-</UL>
-<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[a8]"></a>TM_USART_Puts</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, tm_stm32f4_usart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART_INT_GetUsart
 </UL>
 
 <P><STRONG><a name="[a9]"></a>TM_USART_Send</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, tm_stm32f4_usart.o(.text))
@@ -1110,7 +1106,6 @@ Global Symbols
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_SendControlFrame
 <LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_SendConnectFrame
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_SendConfigFrame
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[ab]"></a>TM_USART_INT_InsertToBuffer</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, tm_stm32f4_usart.o(.text))
@@ -2154,15 +2149,13 @@ Global Symbols
 <P><STRONG><a name="[12d]"></a>CustomTimerHandler</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[7f]"></a>main</STRONG> (Thumb, 332 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[7f]"></a>main</STRONG> (Thumb, 186 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
 <LI>Call Chain = main &rArr; CamScreenP_RefreshScreen &rArr; CamScreenP_HandleConfigScreen &rArr; CamScreen_EcranControle &rArr; CamScreen_RefreshEcranControle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_TimerCreate
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_EnableDelayTimer
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DELAY_Init
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART_Send
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_USART_Puts
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_SendControlFrame
 <LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_ReadMessage
