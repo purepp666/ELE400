@@ -14,19 +14,10 @@
 	#include "defines.h"
 	#include "CamScreen.h"
 
-	// possible errors
-#define NO_ERROR 							0x0
-#define CABLE_END 						0x1
-#define BATT_TEMP 						0x2
-#define BATT_LOW 							0x4
-#define MOTOR_FORCES 					0x8
-#define INVALID_COMMAND 			0x10
-#define OBSTACLE 							0x20
-#define EMERGENCY_STOP 				0x40
-#define INTERFACES_CONFLICT 	0x80
-#define TX_ERROR 							0x100
-#define RX_ERROR 							0x200
-
+	// Screen events
+#define CONFIG 	1
+#define CONTROL 2
+#define CONNECT 3
 
 	/******************************************************************************/
 	/*            										Functions            	  				            */
@@ -37,7 +28,7 @@
 	 * @param  data: 
 	 * @retval 
 	 */	
-	void CamScreenP_Init(void);
+	void CamScreenP_Init(void (*Callback)(uint8_t screen));
 	
 	/**
 	 * @brief  
@@ -51,7 +42,7 @@
 	 * @param  data: 
 	 * @retval 
 	 */	
-	void CamScreenP_UpdateSpeed(uint8_t speed);
+	void CamScreenP_UpdateSpeed(int8_t speed);
 	
 	/**
 	 * @brief  
@@ -79,14 +70,14 @@
 	 * @param  data: 
 	 * @retval 
 	 */	
-	void CamScreenP_UpdateCableLenght(uint16_t speed);
+	void CamScreenP_UpdateCableLenght(uint16_t lenght);
 	
 	/**
 	 * @brief  
 	 * @param  data: 
 	 * @retval 
 	 */	
-	void CamScreenP_Errors(uint8_t flags);
+	void CamScreenP_Errors(uint16_t flags);
 	
 	/**
 	 * @brief  
@@ -94,13 +85,6 @@
 	 * @retval 
 	 */	
 	void CamScreenP_SetConnected(bool state);
-	
-	/**
-	 * @brief  
-	 * @param  data: 
-	 * @retval 
-	 */	
-	void CamScreenP_ReadButtons(uint8_t button_pressed);
 	
 	/**
 	 * @brief  
@@ -123,5 +107,11 @@
 	 */	
 	uint16_t CamScreenP_GetCableLenght(void);
 
+	/**
+	 * @brief  
+	 * @param  data: 
+	 * @retval 
+	 */	
+	int8_t CamScreenP_GetSpeed(void);
 
 #endif

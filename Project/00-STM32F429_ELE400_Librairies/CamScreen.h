@@ -37,6 +37,14 @@
 		Controller_Offline,
 		Controller_Online
 	} T_ControllerStatus;
+	
+	/**
+	 * @brief 
+	 */
+	typedef enum {
+		controller_connected,
+		controller_disconnected
+	} T_ControllerConnected;
 
 
 	/**
@@ -44,6 +52,7 @@
 	 */
 	typedef struct {
 		T_ControllerStatus ControllerStatus; //0->Offline 1->Online
+		T_ControllerConnected ControllerConnected;
 		uint8_t BattLevel;
 		int8_t VitesseVoulu;
 		int8_t VitesseReel;
@@ -54,21 +63,38 @@
 	/**
 	 * @brief buttons pressed flags
 	 */
-	#define BUTTON_SPEED_M 					0x00001
-	#define BUTTON_SPEED_P 					0x00002
-	#define BUTTON_FORWARD 					0x00004
-	#define BUTTON_BACKWARD 				0x00008
-	#define BUTTON_CONFIG_SCREEN 		0x00010
-	#define BUTTON_ACCEL_M 					0x00020
-	#define BUTTON_ACCEL_P 					0x00040
-	#define BUTTON_CABLE_M 					0x00080
-	#define BUTTON_CABLE_P 					0x00100
-	#define BUTTON_CONFIG 					0x00200
-	#define SCREEN_PRESSED 					0x00400
-	#define BUTTON_CONTROL_SCREEN 	0x00800
+	#define SCREEN_PRESSED					200
+	
+	#define BUTTON_CONFIG_SCREEN 		1
+	#define BUTTON_FORWARD 					2
+	#define BUTTON_BACKWARD 				3
+	#define BUTTON_SPEED_P 					4
+	#define BUTTON_SPEED_0 					5
+	#define BUTTON_SPEED_M 					6
+	#define BUTTON_CONNECT 					7
+	
+	#define BUTTON_CONTROL_SCREEN 	1
+	#define BUTTON_CONFIG 					2
+	#define BUTTON_CABLE_P 					3
+	#define BUTTON_CABLE_M 					4
+	#define BUTTON_ACCEL_P 					5
+	#define BUTTON_ACCEL_M 					6
 	
 	
-
+	/**
+	 * @brief errors
+	 */
+	#define NO_ERROR 							0x0
+	#define CABLE_END 						0x1
+	#define BATT_TEMP 						0x2
+	#define BATT_LOW 							0x4
+	#define MOTOR_FORCES 					0x8
+	#define INVALID_COMMAND 			0x10
+	#define OBSTACLE 							0x20
+	#define EMERGENCY_STOP 				0x40
+	#define INTERFACES_CONFLICT 	0x80
+	#define TX_ERROR 							0x100
+	#define RX_ERROR 							0x200
 
 	/******************************************************************************/
 	/*            										Functions            	  				            */
@@ -138,7 +164,7 @@
 	 * @param  data: 
 	 * @retval None
 	 */	
-	uint16_t CamScreen_ButtonsState(void);
+	uint8_t CamScreen_ButtonsState(void);
 	
 #endif
 

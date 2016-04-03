@@ -17,7 +17,7 @@
 /*            											Defines           	      				        */
 /******************************************************************************/ 
 
-#define BAUDRATE 					115200
+#define BAUDRATE 					9600
 #define CONNECT_SOF 			"CXN"
 #define DISCONNECT_SOF 		"DCX"
 #define CONFIG_SOF 				"CNF"

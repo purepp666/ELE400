@@ -38,6 +38,12 @@
 /******************************************************************************/
 /*            									Functions declarations     	      			 		  */
 /******************************************************************************/ 
+/**
+ * @brief  
+ * @param  
+ * @retval None
+ */	
+void ScreenEvents(uint8_t screen);
 
 /**
  * @brief  Handles timings in the main thread
@@ -118,10 +124,11 @@ int main(void) {
 	TM_DISCO_ButtonInit();
 	
 	// init screen and show intro screen
-	CamScreenP_Init();
+	CamScreenP_Init(&ScreenEvents);
 
 	while(1){
 	
+		errors_encountered = 0;
 		/**************** Read XBee messages ************************************/
 		if(CamUart_ReadMessage(&rx_data)){
 			
@@ -137,7 +144,7 @@ int main(void) {
 			
 			// Tx errors are detected when received values does not correspond
 			// to sent values
-			errors_encountered = HandleTxErrors(rx_data);
+			errors_encountered |= HandleTxErrors(rx_data);
 			
 			#ifdef DEBUG
 				TM_USART_Puts(USART1,"\nMessage correctly received");
@@ -157,7 +164,7 @@ int main(void) {
 		}
 		
 		
-		errors_encountered = HandleRxErrors();
+		errors_encountered |= HandleRxErrors();
 		
 		
 		
@@ -187,42 +194,29 @@ int main(void) {
 		
 		// If controller hasn't communicated in a while
 		if(timer_counter_ >= DISCOVERY_DELAY){
-			// Stops timer
-			TM_DELAY_TimerStop(timer);
+			// Stops the counter
+			timer_counter_ = DISCOVERY_DELAY; 
 			// Show controller is offline
-			//CamScreen_ControllerOnline(false)
+			CamScreenP_ControllerOnline(false);
 
 		}
 		else{
 			// Starts timer
-			TM_DELAY_TimerStart(timer);
-			//CamScreen_ControllerOnline(true)
-			
-
+			CamScreenP_ControllerOnline(true);
 		}
 		
-		/******************** Touch screen and tx ********************************/
-		
-		// if(CamScreen_ReadTouchScreenButtons(&button_pressed)){
-		//		SendCommand(button_pressed);	
-		//		#ifdef DEBUG
-		//			TM_USART_Puts(\n\nUSART1,"Touch Screen button: ");
-		//			TM_USART_Send(USART1,&button_pressed,1);
-		//		#endif
-	  // }
-		
+		/******************** Emergency button **********************************/
+
 		// Emergency button
 		if(TM_DISCO_ButtonOnPressed()){
-			//cont_command.speed = -CamScreen_GetSpeed();
+			cont_command.speed = CamScreenP_GetSpeed();
 			cont_command.emergency_stop = true;
 			CamUart_SendControlFrame(cont_command);
 		}
-			
-		
-		
+
 		/********************** Screen Thread ************************************/
 
-		//CamScreen_RefreshScreen();
+		CamScreenP_RefreshScreen();
 	}
 	
 }
@@ -233,6 +227,34 @@ int main(void) {
 /*            							Functions definitions           	     		  			*/
 /******************************************************************************/ 
 
+void ScreenEvents(uint8_t screen){
+	static bool connected = false;
+	
+	if(screen == CONFIG){
+		conf_command.accel = CamScreenP_GetAccel();
+		conf_command.cable_lenght = CamScreenP_GetCableLenght();
+		CamUart_SendConfigFrame(conf_command);
+	}
+	
+	if(screen == CONTROL){
+		cont_command.speed = CamScreenP_GetSpeed();
+		cont_command.emergency_stop = false;
+		CamUart_SendControlFrame(cont_command);
+	}
+	
+	if(screen == CONNECT){
+		if(connected)
+			CamUart_SendDisconnectFrame();
+		else
+			CamUart_SendConnectFrame();
+		
+		connected = !connected;
+	}
+
+}
+
+/******************************************************************************/
+
 void CustomTimerHandler(void* param){
 	timer_counter_++;
 	error_reset_counter_++;
@@ -242,16 +264,18 @@ void CustomTimerHandler(void* param){
 
 void ProcessMessages(CamRxData rx_data){
 	
-	//CamScreen_UpdateSpeed(rx_data.actual_speed);
-	//CamScreen_UpdateBattLevel(rx_data.battery_level)
-	//CamScreen_UpdatePosition(rx_data.position)
+	CamScreenP_UpdateSpeed(rx_data.actual_speed);
+	CamScreenP_UpdateBattLevel(rx_data.battery_level);
+	CamScreenP_UpdatePosition(rx_data.position);
+	CamScreenP_UpdateAccel(rx_data.accel);
+	CamScreenP_UpdateCableLenght(rx_data.cable_lenght);
 	
 	// Verify if we are connected to the controller
 	if(ADDRESS == rx_data.connected_interface_address){
-		// CamScreen_SetConnected(true);
+		 CamScreenP_SetConnected(true);
 	}
 	else{
-		// CamScreen_SetConnected(false);
+		 CamScreenP_SetConnected(false);
 	}
 
 }
@@ -259,46 +283,10 @@ void ProcessMessages(CamRxData rx_data){
 /******************************************************************************/
 
 bool HandleTxErrors(CamRxData rx_data){
-	bool error_encountered = false;
-	static bool tx_error = false;
-	
-	if(rx_data.error & EMERGENCY_STOP){
-			//CamScreen_EmergencyStop()
-	}
-	
-	// If an error that hasn't been seen yet occurs on cablecam
-	if(rx_data.error != 0 && (rx_data.error & errors_flags)!=rx_data.error){
 		
-		error_reset_counter_=0; // Resets the error recovery timer
+	// Raises new flags
+	errors_flags |= rx_data.error;
 	
-		// Deletes errors that have already been seen
-		rx_data.error = rx_data.error & !errors_flags;
-		
-		// Raises new flags
-		errors_flags |= rx_data.error;
-	
-		if(rx_data.error & CABLE_END){
-			//CamScreen_AddError("End of cable reached");
-		}
-		if(rx_data.error & BATT_TEMP){
-			//CamScreen_AddError("Battery temperature high");
-		}
-		if(rx_data.error & BATT_LOW){
-			//CamScreen_AddError("Battery low");
-		}
-		if(rx_data.error & MOTOR_FORCES){
-			//CamScreen_AddError("Motor forces to reach speed");
-		}
-		if(rx_data.error & INVALID_COMMAND){
-			tx_error = true;
-		}
-		if(rx_data.error & OBSTACLE){
-			//CamScreen_AddError("Obstacle on the cable");
-		}
-		if(rx_data.error & INTERFACES_CONFLICT){
-			//CamScreen_AddError("Other interfaces try to connect");
-		}
-	}
 	
 	
 	// If a config is different from expected
@@ -306,72 +294,40 @@ bool HandleTxErrors(CamRxData rx_data){
 		|| (conf_command.cable_lenght != rx_data.cable_lenght) 
 		|| (cont_command.speed != rx_data.aimed_speed)){
 		// Sets an error flag
-		error_encountered = true; 
-		tx_error = true;
-	}
-	
-	// Verify and show tx errors
-	if(tx_error && (errors_flags & TX_ERROR) == 0){
 		errors_flags |= TX_ERROR;
-		// CamScreen_AddError("A command was lost by the cablecam. Verify config.");
 	}
 
-	return error_encountered;
+	CamScreenP_Errors(errors_flags);
+	
+	if(errors_flags)
+		return true;
+	else
+		return false;
+
 }
 
 /******************************************************************************/
 
 bool HandleRxErrors(void){
-	bool error_encountered = false;
 	uint8_t errors = CamUart_GetRxErrorsCount();
 	
 	// Verify and show rx errors
-	if(errors && (errors_flags & RX_ERROR) == 0){
+	if(errors){
 		errors_flags |= RX_ERROR;
-		// CamScreen_AddError("Invalid messages received");
+		CamScreenP_Errors(errors_flags);
+		return true;
 	}
-	
-	if(errors)
-		error_encountered = true;
-
-	return error_encountered;
+	else{
+		CamScreenP_Errors(errors_flags);
+		return false;
+	}
 }
 
 /******************************************************************************/
 
 void RecoverFromErrors(void){
-	// CamScreen_DeleteErrors(); 
 	errors_flags = 0;
 }
-
-/******************************************************************************/
-
-void SendCommand(uint8_t command){
-	/*switch(command){
-		case CONNECT:
-			CamUart_SendConnectFrame();
-			break;
-		case DISCONNECT:
-			CamUart_SendDisconnectFrame();
-			break;
-		case CONFIGURE:
-			conf_command.accel = CamScreen_GetAccel();-------
-			conf_command.cable_lenght = CamScreen_GetCableLenght();----------
-			CamUart_SendConfigFrame(conf_command);
-			break;
-		case LEFT_DIRECTION:
-			cont_command.speed = -CamScreen_GetSpeed();
-			cont_command.emergency_stop = false;
-			CamUart_SendControlFrame(cont_command);
-			break;
-		case RIGHT_DIRECTION:
-			cont_command.speed = CamScreen_GetSpeed();
-			cont_command.emergency_stop = false;
-			CamUart_SendControlFrame(cont_command);
-			break;
-	}*/
-}
-
 
 
 /******************************************************************************/
