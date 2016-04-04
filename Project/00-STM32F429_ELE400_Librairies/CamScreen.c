@@ -9,7 +9,7 @@
  */
 
 #include "CamScreen.h"
-#include <stdbool.h>
+
 #include "tm_stm32f4_disco.h"
 
 /******************************************************************************/
@@ -160,25 +160,20 @@ uint8_t CamScreen_ButtonsState(void){
 	static int8_t pevious_button_Pressed = 0;
 	
 	// read buttons
-	int8_t button_pressed = TM_ILI9341_Button_Touch(&touch_data_);
+	int8_t button_pressed;
+
 	
 	// read any LCD touch
 	if(TM_STMPE811_ReadTouch(&touch_data_) == TM_STMPE811_State_Pressed){
 		buttons_flag = SCREEN_PRESSED;
-	}
-	
-	// Verify a change on buttons state
-	if(pevious_button_Pressed != button_pressed){
-		pevious_button_Pressed = button_pressed;
-		if(button_pressed == bouton_retour_acceuil_)
-		{
-			buttons_flag = BUTTON_CONTROL_SCREEN;
+		button_pressed = TM_ILI9341_Button_Touch(&touch_data_);
+		
+		// Verify state on buttons that do not need change detection
+		if(button_pressed == button_lenght_dec_){
+			buttons_flag = BUTTON_CABLE_M;
 		}
-		else if(button_pressed == button_forward_){
-			buttons_flag = BUTTON_FORWARD;
-		}
-		else if(button_pressed == button_backward_){
-			buttons_flag = BUTTON_BACKWARD;
+		else if(button_pressed == button_lenght_inc_){
+			buttons_flag = BUTTON_CABLE_P;
 		}
 		else if(button_pressed == button_speed_dec_){
 			buttons_flag = BUTTON_SPEED_M;
@@ -186,29 +181,38 @@ uint8_t CamScreen_ButtonsState(void){
 		else if(button_pressed == button_speed_inc_){
 			buttons_flag = BUTTON_SPEED_P;
 		}
-		else if(button_pressed == bouton_retour_config_){
-			buttons_flag = BUTTON_CONFIG_SCREEN;
-		}
-		else if(button_pressed == button_accel_dec_){
-			buttons_flag = BUTTON_ACCEL_M;
-		}
-		else if(button_pressed == button_accel_inc_){
-			buttons_flag = BUTTON_ACCEL_P;
-		}
-		else if(button_pressed == button_lenght_dec_){
-			buttons_flag = BUTTON_CABLE_M;
-		}
-		else if(button_pressed == button_lenght_inc_){
-			buttons_flag = BUTTON_CABLE_P;
-		}
-		else if(button_pressed == button_send_config_){
-			buttons_flag = BUTTON_CONFIG;
-		}
-		else if(button_pressed == button_speed_0_){
-			buttons_flag = BUTTON_SPEED_0;
-		}
-		else if(button_pressed == button_connect_){
-			buttons_flag = BUTTON_CONNECT;
+		
+		// Verify a change on buttons state
+		if(pevious_button_Pressed != button_pressed){
+			pevious_button_Pressed = button_pressed;
+			if(button_pressed == bouton_retour_acceuil_)
+			{
+				buttons_flag = BUTTON_CONTROL_SCREEN;
+			}
+			else if(button_pressed == button_forward_){
+				buttons_flag = BUTTON_FORWARD;
+			}
+			else if(button_pressed == button_backward_){
+				buttons_flag = BUTTON_BACKWARD;
+			}
+			else if(button_pressed == bouton_retour_config_){
+				buttons_flag = BUTTON_CONFIG_SCREEN;
+			}
+			else if(button_pressed == button_accel_dec_){
+				buttons_flag = BUTTON_ACCEL_M;
+			}
+			else if(button_pressed == button_accel_inc_){
+				buttons_flag = BUTTON_ACCEL_P;
+			}
+			else if(button_pressed == button_send_config_){
+				buttons_flag = BUTTON_CONFIG;
+			}
+			else if(button_pressed == button_speed_0_){
+				buttons_flag = BUTTON_SPEED_0;
+			}
+			else if(button_pressed == button_connect_){
+				buttons_flag = BUTTON_CONNECT;
+			}
 		}
 	}
 	
@@ -329,14 +333,14 @@ void CamScreen_EcranConfig(void){
 	TM_ILI9341_Puts(55,105, "Cable \nlenght", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	
 	TM_ILI9341_Puts(55,190, "Motor's \nacceleration", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-	CamScreen_RefreshEcranConfig(&init_values);
+	CamScreen_RefreshEcranConfig(&init_values, true);
 }
 
 /******************************************************************************/
 
 void CamScreen_EcranControle(void){
 	
-	T_Controle_Information init_values = {Controller_Online,controller_connected,0,1,0,0,0};
+	T_Controle_Information init_values = {Controller_Offline,controller_disconnected,0,0,0,0,0};
 	
 	/* Clear LCD */
 	CamScreen_ClrScreen();
@@ -467,12 +471,12 @@ void CamScreen_EcranControle(void){
 	TM_ILI9341_Puts(10,289, " Connect", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_GRAY);
 	TM_ILI9341_Puts(10,303, "/Disconnect", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_GRAY);
 	
-	CamScreen_RefreshEcranControle(&init_values);
+	CamScreen_RefreshEcranControle(&init_values, true);
 }
 
 /******************************************************************************/
 
-void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting){
+void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting, bool force_refresh){
 	
 	static T_Config_Setting previous_values = {0,0};
 	bool values_changed = false;
@@ -483,7 +487,7 @@ void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting){
 	previous_values.Accelation = Config_Setting->Accelation;
 	previous_values.LenghtCable = Config_Setting->LenghtCable;
 	
-	if(values_changed){
+	if(values_changed || force_refresh){
 		sprintf(str_, ":%ddm     ", Config_Setting->LenghtCable);
 		TM_ILI9341_Puts(115, 104, str_, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 		sprintf(str_, ":%d     ", Config_Setting->Accelation);
@@ -493,7 +497,7 @@ void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting){
 
 /******************************************************************************/
 
-void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information){
+void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information, bool force_refresh){
 	static T_Controle_Information previous_values = {Controller_Offline,controller_disconnected,0,0,0,0,0};
 	int i=0;
 	
@@ -519,7 +523,7 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 	
 	
 	
-	if(status_changed || connected_changed){
+	if(status_changed || connected_changed|| force_refresh){
 		if(Controle_Information->ControllerStatus){
 			TM_ILI9341_Puts(80,3,"Online ", &TM_Font_7x10, ILI9341_COLOR_GREEN, ILI9341_COLOR_WHITE);
 		}
@@ -534,13 +538,13 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 		}
 	}
 	
-	if(	batt_changed){
+	if(	batt_changed|| force_refresh){
 		sprintf(str_, "%d%%", Controle_Information->BattLevel);
 		TM_ILI9341_Puts(208,3, "    ", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 		TM_ILI9341_Puts(208,3, str_, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	}
 	
-	if(asked_speed_changed){
+	if(asked_speed_changed|| force_refresh){
 		if(Controle_Information->VitesseVoulu < 0){
 			TM_ILI9341_Puts(10,52,"Backward", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 		}
@@ -553,20 +557,20 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 		TM_ILI9341_Puts(18,100, str_, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	}
 	
-	if(pos_changed){
+	if(pos_changed|| force_refresh){
 		sprintf(str_, "%ddm",Controle_Information->Position);
 		TM_ILI9341_Puts(18,133, "       ", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 		TM_ILI9341_Puts(18,133, str_, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	}
 	
-	if(act_speed_changed){
+	if(act_speed_changed|| force_refresh){
 		sprintf(str_, "  %d%%",Controle_Information->VitesseReel);
 		TM_ILI9341_Puts(95,133, "       ", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 		TM_ILI9341_Puts(95,133, str_, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	}
 	
 	
-	if(errors_changed){
+	if(errors_changed|| force_refresh){
 		//effacer error avant d'afficher ou faire refresh
 		for(i=173;i<=264;i+=13){
 			TM_ILI9341_Puts(10,i,"                             ", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
@@ -581,7 +585,7 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 			i+=13;
 		}
 		if((Controle_Information->errors_flags & INVALID_COMMAND) == INVALID_COMMAND){
-			TM_ILI9341_Puts(10,i,"-Battery temperature high", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
+			TM_ILI9341_Puts(10,i,"-Cam: Invalid comms received", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
 			i+=13;
 		}
 		if((Controle_Information->errors_flags & OBSTACLE) == OBSTACLE){

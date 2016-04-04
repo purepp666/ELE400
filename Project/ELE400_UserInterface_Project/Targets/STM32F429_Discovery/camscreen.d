@@ -1,6 +1,7 @@
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_ELE400_Librairies\CamScreen.c
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_ELE400_Librairies\CamScreen.h
 .\targets\stm32f429_discovery\camscreen.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\targets\stm32f429_discovery\camscreen.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\targets\stm32f429_discovery\camscreen.o: .\User\defines.h
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
@@ -55,4 +56,3 @@
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_button.h
 .\targets\stm32f429_discovery\camscreen.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h
-.\targets\stm32f429_discovery\camscreen.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

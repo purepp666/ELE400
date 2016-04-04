@@ -97,7 +97,7 @@ void CamScreenP_RefreshScreen(void){
 
 void CamScreenP_HandleControlScreen(void){
 	
-	CamScreen_RefreshEcranControle(&control_info_);
+	CamScreen_RefreshEcranControle(&control_info_, false);
 	
 	switch(CamScreen_ButtonsState()){
 		case BUTTON_CONFIG_SCREEN:
@@ -127,7 +127,7 @@ void CamScreenP_HandleControlScreen(void){
 			event_callback_(CONTROL);
 			break;	
 		case BUTTON_SPEED_M:
-			if(control_info_.VitesseVoulu > 0){
+			if(control_info_.VitesseVoulu > -100){
 				control_info_.VitesseVoulu--;
 				event_callback_(CONTROL);
 			}
@@ -144,11 +144,11 @@ void CamScreenP_HandleControlScreen(void){
 void CamScreenP_HandleConfigScreen(void){
 	
 	if(asked_settings_.accel == 0 && asked_settings_.cable_length == 0)
-		CamScreen_RefreshEcranConfig(&setting_);
+		CamScreen_RefreshEcranConfig(&setting_, false);
 	else{
 		setting_.Accelation = asked_settings_.accel;
 		setting_.LenghtCable = asked_settings_.cable_length;
-		CamScreen_RefreshEcranConfig(&setting_);
+		CamScreen_RefreshEcranConfig(&setting_, false);
 	}
 	
 	switch(CamScreen_ButtonsState()){

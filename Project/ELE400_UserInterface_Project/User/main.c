@@ -28,9 +28,9 @@
 /*            												Defines     	      			 		  				*/
 /******************************************************************************/ 
 
-#define DISCOVERY_DELAY 			5			// x 0.1 sec
+#define DISCOVERY_DELAY 			20			// x 0.1 sec
 #define ERROR_RECOVERY_COUNT 	200		// x 0.1 sec
-#define ADDRESS 							0x35
+#define ADDRESS 							0x7A
 
 
 
@@ -91,6 +91,7 @@ uint32_t timer_counter_ = DISCOVERY_DELAY;
 uint32_t error_reset_counter_ = 0;
 ConfigCommand conf_command;
 ControlCommand cont_command;
+bool connected_ = false;
 
 /******************************************************************************/
 /*            									      Main           	      			 		  			*/
@@ -222,7 +223,7 @@ int main(void) {
 /******************************************************************************/ 
 
 void ScreenEvents(uint8_t screen){
-	static bool connected = false;
+	
 	
 	// If event is config event
 	if(screen == CONFIG){
@@ -238,12 +239,10 @@ void ScreenEvents(uint8_t screen){
 	}
 	// If event is connect event
 	if(screen == CONNECT){
-		if(connected)
+		if(connected_)
 			CamUart_SendDisconnectFrame();
 		else
 			CamUart_SendConnectFrame();
-		
-		connected = !connected;
 	}
 
 }
@@ -267,10 +266,12 @@ void ProcessMessages(CamRxData rx_data){
 	
 	// Verify if we are connected to the controller
 	if(ADDRESS == rx_data.connected_interface_address){
-		 CamScreenP_SetConnected(true);
+		CamScreenP_SetConnected(true);
+		connected_ = true;
 	}
 	else{
-		 CamScreenP_SetConnected(false);
+		CamScreenP_SetConnected(false);
+		connected_ = false;
 	}
 
 }

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Targets\STM32F429_Discovery\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Targets\STM32F429_Discovery\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sun Apr 03 21:37:44 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Mon Apr 04 16:07:10 2016
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2124,7 +2124,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[11c]"></a>ProcessMessages</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[11c]"></a>ProcessMessages</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ProcessMessages
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_UpdateSpeed
@@ -2137,7 +2137,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[123]"></a>ScreenEvents</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[123]"></a>ScreenEvents</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ScreenEvents &rArr; CamUart_SendDisconnectFrame &rArr; TM_USART_Send
 </UL>
 <BR>[Calls]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamUart_SendDisconnectFrame
@@ -2314,7 +2314,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[138]"></a>CamScreenP_HandleControlScreen</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, camprocessscreen.o(.text))
+<P><STRONG><a name="[138]"></a>CamScreenP_HandleControlScreen</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, camprocessscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
 <LI>Call Chain = CamScreenP_HandleControlScreen &rArr; CamScreen_EcranConfig &rArr; TM_ILI9341_Button_DrawAll &rArr; TM_ILI9341_Button_Draw &rArr; TM_ILI9341_DrawRectangle &rArr; TM_ILI9341_DrawLine &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
@@ -2325,7 +2325,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_RefreshScreen
 </UL>
 
-<P><STRONG><a name="[13c]"></a>CamScreenP_HandleConfigScreen</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, camprocessscreen.o(.text))
+<P><STRONG><a name="[13c]"></a>CamScreenP_HandleConfigScreen</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, camprocessscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272 + Unknown Stack Size
 <LI>Call Chain = CamScreenP_HandleConfigScreen &rArr; CamScreen_EcranControle &rArr; CamScreen_RefreshEcranControle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
@@ -2418,7 +2418,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_Init
 </UL>
 
-<P><STRONG><a name="[13a]"></a>CamScreen_ButtonsState</STRONG> (Thumb, 192 bytes, Stack size 16 bytes, camscreen.o(.text))
+<P><STRONG><a name="[13a]"></a>CamScreen_ButtonsState</STRONG> (Thumb, 198 bytes, Stack size 16 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = CamScreen_ButtonsState &rArr; TM_STMPE811_ReadTouch &rArr; TM_STMPE811_ReadX &rArr; TM_STMPE811_Read &rArr; TM_I2C_Read &rArr; TM_I2C_Start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_STMPE811_ReadTouch
@@ -2440,7 +2440,7 @@ Global Symbols
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_HandleConfigScreen
 </UL>
 
-<P><STRONG><a name="[13b]"></a>CamScreen_EcranConfig</STRONG> (Thumb, 478 bytes, Stack size 48 bytes, camscreen.o(.text))
+<P><STRONG><a name="[13b]"></a>CamScreen_EcranConfig</STRONG> (Thumb, 480 bytes, Stack size 48 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
 <LI>Call Chain = CamScreen_EcranConfig &rArr; TM_ILI9341_Button_DrawAll &rArr; TM_ILI9341_Button_Draw &rArr; TM_ILI9341_DrawRectangle &rArr; TM_ILI9341_DrawLine &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
@@ -2455,7 +2455,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_HandleControlScreen
 </UL>
 
-<P><STRONG><a name="[139]"></a>CamScreen_RefreshEcranControle</STRONG> (Thumb, 950 bytes, Stack size 56 bytes, camscreen.o(.text))
+<P><STRONG><a name="[139]"></a>CamScreen_RefreshEcranControle</STRONG> (Thumb, 964 bytes, Stack size 56 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = CamScreen_RefreshEcranControle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
@@ -2466,7 +2466,7 @@ Global Symbols
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_HandleControlScreen
 </UL>
 
-<P><STRONG><a name="[13e]"></a>CamScreen_EcranControle</STRONG> (Thumb, 1062 bytes, Stack size 56 bytes, camscreen.o(.text))
+<P><STRONG><a name="[13e]"></a>CamScreen_EcranControle</STRONG> (Thumb, 1076 bytes, Stack size 56 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
 <LI>Call Chain = CamScreen_EcranControle &rArr; CamScreen_RefreshEcranControle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>

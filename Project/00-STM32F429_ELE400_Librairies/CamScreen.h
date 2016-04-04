@@ -12,6 +12,7 @@
 	#define ECRAN_IMAGE_H
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "defines.h"
 #include "tm_stm32f4_ili9341.h"
 #include "tm_stm32f4_stmpe811.h"
@@ -135,14 +136,14 @@
 	 * @param  Config_Setting: setting to show
 	 * @retval None
 	 */	
-	void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting);
+	void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting, bool force_refresh);
 
 	/**
 	 * @brief  Updates data on screen for control screen
 	 * @param  Controle_Information: data to show
 	 * @retval None
 	 */	
-	void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information);
+	void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information, bool force_refresh);
 
 	/**
 	 * @brief  blanks the screen
