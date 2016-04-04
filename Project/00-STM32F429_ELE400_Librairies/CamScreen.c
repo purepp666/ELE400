@@ -7,7 +7,8 @@
  */
 
 #include "CamScreen.h"
-#include "CamProcessScreen.h"
+#include <stdbool.h>
+#include "tm_stm32f4_disco.h"
 
 /******************************************************************************/
 /*            									Global Variables           	      			 		  */
@@ -130,6 +131,7 @@ uint16_t Fleche_Gauche_23x18[] = {
 void CamScreen_Init(void){
 	TM_ILI9341_Init();
 	TM_STMPE811_Init();
+	TM_DISCO_LedInit();
 }
 
 /******************************************************************************/
@@ -206,7 +208,8 @@ uint8_t CamScreen_ButtonsState(void){
 	}
 	
 	
-	
+	if(buttons_flag != 0 && buttons_flag != SCREEN_PRESSED)TM_DISCO_SetLed(LED_RED, 1);
+	else TM_DISCO_SetLed(LED_RED, 0);
 	
 	
 	return buttons_flag;
@@ -435,7 +438,7 @@ void CamScreen_EcranControle(void){
 	/* Draw button_s */
 	TM_ILI9341_Button_DrawAll();
 	
-	TM_ILI9341_Puts(180,30, "S\nk-R\ny-u\n  u\n  n\n  n\n  e\n  r", &TM_Font_16x26, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
+	TM_ILI9341_Puts(180,30, "S\nk-R\ny-u\n  n\n  n\n  e\n  r", &TM_Font_16x26, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
 	
 	TM_ILI9341_Puts(5,3, "CableCam:", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 	
@@ -517,7 +520,7 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 			TM_ILI9341_Puts(80,15,"Connected     ", &TM_Font_7x10, ILI9341_COLOR_GREEN, ILI9341_COLOR_WHITE);
 		}
 		else{
-			TM_ILI9341_Puts(80,15,"Not connected ", &TM_Font_7x10, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
+			TM_ILI9341_Puts(80,15,"Not connected ", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
 		}
 	}
 	
@@ -585,6 +588,10 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 		}
 		if((Controle_Information->errors_flags & INTERFACES_CONFLICT)	== INTERFACES_CONFLICT){
 			TM_ILI9341_Puts(10,i,"-Other interfaces try\n to connect", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
+			i+=13;
+		}
+		if((Controle_Information->errors_flags & TX_ERROR)	|| (Controle_Information->errors_flags & RX_ERROR)){
+			TM_ILI9341_Puts(10,i,"-Communication error occured", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
 			i+=13;
 		}
 		if((Controle_Information->errors_flags & EMERGENCY_STOP)	== EMERGENCY_STOP){

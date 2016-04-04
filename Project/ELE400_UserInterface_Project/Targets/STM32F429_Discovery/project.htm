@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Targets\STM32F429_Discovery\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Targets\STM32F429_Discovery\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sun Apr 03 19:37:24 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sun Apr 03 21:12:51 2016
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1292,8 +1292,12 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_GetPortSource
 </UL>
 
-<P><STRONG><a name="[b8]"></a>TM_DISCO_LedInit</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, tm_stm32f4_disco.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
+<P><STRONG><a name="[b8]"></a>TM_DISCO_LedInit</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, tm_stm32f4_disco.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = TM_DISCO_LedInit &rArr; TM_GPIO_Init &rArr; TM_GPIO_INT_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreen_Init
 </UL>
 
 <P><STRONG><a name="[b9]"></a>TM_DISCO_ButtonInit</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, tm_stm32f4_disco.o(.text))
@@ -2390,11 +2394,12 @@ Global Symbols
 <LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ScreenEvents
 </UL>
 
-<P><STRONG><a name="[136]"></a>CamScreen_Init</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, camscreen.o(.text))
+<P><STRONG><a name="[136]"></a>CamScreen_Init</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = CamScreen_Init &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_STMPE811_Init
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Init
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_DISCO_LedInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_Init
 </UL>
@@ -2413,7 +2418,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_Init
 </UL>
 
-<P><STRONG><a name="[13a]"></a>CamScreen_ButtonsState</STRONG> (Thumb, 170 bytes, Stack size 16 bytes, camscreen.o(.text))
+<P><STRONG><a name="[13a]"></a>CamScreen_ButtonsState</STRONG> (Thumb, 192 bytes, Stack size 16 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = CamScreen_ButtonsState &rArr; TM_STMPE811_ReadTouch &rArr; TM_STMPE811_ReadX &rArr; TM_STMPE811_Read &rArr; TM_I2C_Read &rArr; TM_I2C_Start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_STMPE811_ReadTouch
@@ -2450,7 +2455,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_HandleControlScreen
 </UL>
 
-<P><STRONG><a name="[139]"></a>CamScreen_RefreshEcranControle</STRONG> (Thumb, 930 bytes, Stack size 56 bytes, camscreen.o(.text))
+<P><STRONG><a name="[139]"></a>CamScreen_RefreshEcranControle</STRONG> (Thumb, 950 bytes, Stack size 56 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = CamScreen_RefreshEcranControle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
@@ -2461,7 +2466,7 @@ Global Symbols
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CamScreenP_HandleControlScreen
 </UL>
 
-<P><STRONG><a name="[13e]"></a>CamScreen_EcranControle</STRONG> (Thumb, 1042 bytes, Stack size 56 bytes, camscreen.o(.text))
+<P><STRONG><a name="[13e]"></a>CamScreen_EcranControle</STRONG> (Thumb, 1062 bytes, Stack size 56 bytes, camscreen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
 <LI>Call Chain = CamScreen_EcranControle &rArr; CamScreen_RefreshEcranControle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>

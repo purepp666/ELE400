@@ -57,7 +57,7 @@
 		int8_t VitesseVoulu;
 		int8_t VitesseReel;
 		uint16_t Position;
-		uint8_t errors_flags;
+		uint16_t errors_flags;
 	} T_Controle_Information;
 	
 	/**
