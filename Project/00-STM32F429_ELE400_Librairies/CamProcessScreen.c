@@ -1,9 +1,11 @@
 /**
- * @author  
- * @email   
+ * @author  David Prairie-Bourgault and Alexi Demers
+ * @email   alexidemers@gmail.com
  * @version v1
  * @ide     Keil uVision
- * @brief   
+ * @brief   This class controls the navigation between screen and the notifications
+ *					to the main process when something happens that needs further processing.
+ *					in summary, this library is the main process of the user interface's display.
  */
 
 #include "CamProcessScreen.h"
@@ -48,15 +50,15 @@ void (*event_callback_)(uint8_t screen) ;
 /******************************************************************************/ 
 
 /**
- * @brief  
- * @param  param: unused
+ * @brief  Handles buttons and data changes in control screen
+ * @param  None
  * @retval None
  */	
 void CamScreenP_HandleControlScreen(void);
 
 /**
- * @brief 
- * @param  param: unused
+ * @brief  Handles buttons and data changes in config screen
+ * @param  None
  * @retval None
  */	
 void CamScreenP_HandleConfigScreen(void);
@@ -173,7 +175,7 @@ void CamScreenP_HandleConfigScreen(void){
 				asked_settings_.accel++;
 			break;	
 		case BUTTON_ACCEL_M:
-			if(asked_settings_.accel > 0)
+			if(asked_settings_.accel > 1)
 				asked_settings_.accel--;
 			break;				
 	}

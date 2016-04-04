@@ -1,9 +1,11 @@
 /**
- * @author  
- * @email   
+ * @author  David Prairie-Bourgault and Alexi Demers
+ * @email   alexidemers@gmail.com
  * @version v1
  * @ide     Keil uVision
- * @brief   
+ * @brief   This class allows to display all menus and datas of the
+ *					ETS ELE400 Cable Cam project's user interface. The project
+ * 					was realized by members of the team SkyRunner.
  */
 
 #ifndef ECRAN_IMAGE_H
@@ -23,7 +25,7 @@
 /*            										Defines	            	  				            */
 /******************************************************************************/
 	/**
-	 * @brief 
+	 * @brief Cable cam configuration structure
 	 */
 	typedef struct {
 		uint8_t Accelation;      
@@ -31,7 +33,7 @@
 	} T_Config_Setting;
 
 	/**
-	 * @brief 
+	 * @brief Cable cam status
 	 */
 	typedef enum {
 		Controller_Offline,
@@ -39,7 +41,7 @@
 	} T_ControllerStatus;
 	
 	/**
-	 * @brief 
+	 * @brief Controller connected  status
 	 */
 	typedef enum {
 		controller_connected,
@@ -48,7 +50,7 @@
 
 
 	/**
-	 * @brief 
+	 * @brief strcutre containing all control information to update on screen
 	 */
 	typedef struct {
 		T_ControllerStatus ControllerStatus; //0->Offline 1->Online
@@ -101,68 +103,58 @@
 	/******************************************************************************/ 
 	
 	/**
-	 * @brief  
-	 * @param  data: 
+	 * @brief  init screen and touch
+	 * @param  none
 	 * @retval None
 	 */	
 	void CamScreen_Init(void);
 	
 	/**
-	 * @brief  
-	 * @param  data: 
+	 * @brief  display intro screen
+	 * @param  none
 	 * @retval None
 	 */	
 	void CamScreen_EcranAccueil(void);
 
 	/**
-	 * @brief  
-	 * @param  data: 
+	 * @brief  display config screen
+	 * @param  none
 	 * @retval None
 	 */	
 	void CamScreen_EcranConfig(void);
 
 	/**
-	 * @brief  
-	 * @param  data: 
-	 * @retval None
-	 */	
-	void CamScreen_ArretUrgence(void);
-
-	/**
-	 * @brief  
-	 * @param  data: 
+	 * @brief  Display control screen
+	 * @param  none 
 	 * @retval None
 	 */	
 	void CamScreen_EcranControle(void);
 
 	/**
-	 * @brief  
-	 * @param  data: 
+	 * @brief  Updates data on screen for config screen
+	 * @param  Config_Setting: setting to show
 	 * @retval None
 	 */	
 	void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting);
 
 	/**
-	 * @brief  
-	 * @param  data: 
+	 * @brief  Updates data on screen for control screen
+	 * @param  Controle_Information: data to show
 	 * @retval None
 	 */	
 	void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information);
-	
-	
-	
 
 	/**
-	 * @brief  
-	 * @param  data: 
+	 * @brief  blanks the screen
+	 * @param  None
 	 * @retval None
 	 */	
 	void CamScreen_ClrScreen(void);
 	
 	/**
-	 * @brief  
-	 * @param  data: 
-	 * @retval None
+	 * @brief  reads touch buttons state
+	 * @param  None 
+	 * @retval uint8_t button pressed. 
 	 */	
 	uint8_t CamScreen_ButtonsState(void);
 	

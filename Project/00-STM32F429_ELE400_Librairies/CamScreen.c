@@ -1,9 +1,11 @@
 /**
- * @author  
- * @email   
+ * @author  David Prairie-Bourgault and Alexi Demers
+ * @email   alexidemers@gmail.com
  * @version v1
  * @ide     Keil uVision
- * @brief   
+ * @brief   This class allows to display all menus and datas of the
+ *					ETS ELE400 Cable Cam project's user interface. The project
+ * 					was realized by members of the team SkyRunner.
  */
 
 #include "CamScreen.h"
@@ -157,12 +159,15 @@ uint8_t CamScreen_ButtonsState(void){
 	
 	static int8_t pevious_button_Pressed = 0;
 	
+	// read buttons
 	int8_t button_pressed = TM_ILI9341_Button_Touch(&touch_data_);
 	
+	// read any LCD touch
 	if(TM_STMPE811_ReadTouch(&touch_data_) == TM_STMPE811_State_Pressed){
 		buttons_flag = SCREEN_PRESSED;
 	}
 	
+	// Verify a change on buttons state
 	if(pevious_button_Pressed != button_pressed){
 		pevious_button_Pressed = button_pressed;
 		if(button_pressed == bouton_retour_acceuil_)
@@ -207,11 +212,11 @@ uint8_t CamScreen_ButtonsState(void){
 		}
 	}
 	
-	
+	// turn on the led if a button is pushed
 	if(buttons_flag != 0 && buttons_flag != SCREEN_PRESSED)TM_DISCO_SetLed(LED_RED, 1);
 	else TM_DISCO_SetLed(LED_RED, 0);
 	
-	
+	// return button pushed
 	return buttons_flag;
 }
 
@@ -491,6 +496,8 @@ void CamScreen_RefreshEcranConfig(T_Config_Setting* Config_Setting){
 void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information){
 	static T_Controle_Information previous_values = {Controller_Offline,controller_disconnected,0,0,0,0,0};
 	int i=0;
+	
+	// Verifying changes on data
 	bool status_changed = Controle_Information->ControllerStatus != previous_values.ControllerStatus;
 	bool act_speed_changed = Controle_Information->VitesseReel != previous_values.VitesseReel;
 	bool asked_speed_changed = Controle_Information->VitesseVoulu != previous_values.VitesseVoulu;
@@ -506,6 +513,9 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 	previous_values.VitesseReel = Controle_Information->VitesseReel;
 	previous_values.ControllerStatus = Controle_Information->ControllerStatus;
 	previous_values.ControllerConnected = Controle_Information->ControllerConnected;
+	
+	
+	// All data is refreshed only if it has changed
 	
 	
 	
@@ -607,7 +617,4 @@ void CamScreen_ClrScreen(void){
 	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 }
 /******************************************************************************/
-void CamScreen_ArretUrgence(void){
-	
-}
-/******************************************************************************/
+

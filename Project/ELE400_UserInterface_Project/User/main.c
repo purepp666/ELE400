@@ -39,8 +39,8 @@
 /*            									Functions declarations     	      			 		  */
 /******************************************************************************/ 
 /**
- * @brief  
- * @param  
+ * @brief  Event recevied from screen process
+ * @param  screen : screen event
  * @retval None
  */	
 void ScreenEvents(uint8_t screen);
@@ -81,18 +81,12 @@ bool HandleRxErrors(void);
  */	
 void RecoverFromErrors(void);
 
-/**
- * @brief  Sends a uart command. 
- * @param  command: See CamScreen_display.h for button defines
- * @retval none
- */	
-void SendCommand(uint8_t command);
 
 /******************************************************************************/
 /*            									Global Variables           	      			 		  */
 /******************************************************************************/ 
 
-uint16_t errors_flags = 0;
+uint16_t errors_flags_ = 0;
 uint32_t timer_counter_ = DISCOVERY_DELAY;
 uint32_t error_reset_counter_ = 0;
 ConfigCommand conf_command;
@@ -230,18 +224,19 @@ int main(void) {
 void ScreenEvents(uint8_t screen){
 	static bool connected = false;
 	
+	// If event is config event
 	if(screen == CONFIG){
 		conf_command.accel = CamScreenP_GetAccel();
 		conf_command.cable_lenght = CamScreenP_GetCableLenght();
 		CamUart_SendConfigFrame(conf_command);
 	}
-	
+	// If event is control event
 	if(screen == CONTROL){
 		cont_command.speed = CamScreenP_GetSpeed();
 		cont_command.emergency_stop = false;
 		CamUart_SendControlFrame(cont_command);
 	}
-	
+	// If event is connect event
 	if(screen == CONNECT){
 		if(connected)
 			CamUart_SendDisconnectFrame();
@@ -285,7 +280,7 @@ void ProcessMessages(CamRxData rx_data){
 bool HandleTxErrors(CamRxData rx_data){
 		
 	// Raises new flags
-	errors_flags |= rx_data.error;
+	errors_flags_ |= rx_data.error;
 	
 	
 	
@@ -294,12 +289,12 @@ bool HandleTxErrors(CamRxData rx_data){
 		|| (conf_command.cable_lenght != rx_data.cable_lenght) 
 		|| (cont_command.speed != rx_data.aimed_speed)){
 		// Sets an error flag
-		errors_flags |= TX_ERROR;
+		errors_flags_ |= TX_ERROR;
 	}
 
-	CamScreenP_Errors(errors_flags);
+	CamScreenP_Errors(errors_flags_);
 	
-	if(errors_flags)
+	if(errors_flags_)
 		return true;
 	else
 		return false;
@@ -313,12 +308,12 @@ bool HandleRxErrors(void){
 	
 	// Verify and show rx errors
 	if(errors){
-		errors_flags |= RX_ERROR;
-		CamScreenP_Errors(errors_flags);
+		errors_flags_ |= RX_ERROR;
+		CamScreenP_Errors(errors_flags_);
 		return true;
 	}
 	else{
-		CamScreenP_Errors(errors_flags);
+		CamScreenP_Errors(errors_flags_);
 		return false;
 	}
 }
@@ -326,7 +321,7 @@ bool HandleRxErrors(void){
 /******************************************************************************/
 
 void RecoverFromErrors(void){
-	errors_flags = 0;
+	errors_flags_ = 0;
 }
 
 
