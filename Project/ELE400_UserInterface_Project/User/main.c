@@ -28,8 +28,9 @@
 /*            												Defines     	      			 		  				*/
 /******************************************************************************/ 
 
-#define DISCOVERY_DELAY 			20			// x 0.1 sec
+#define DISCOVERY_DELAY 			20		// x 0.1 sec
 #define ERROR_RECOVERY_COUNT 	200		// x 0.1 sec
+#define PING_INTERVAL 				10		// x 0.1 sec
 #define ADDRESS 							0x7A
 #define CLEAR_ERRORS					0x300
 
@@ -62,18 +63,11 @@ void CustomTimerHandler(void* param);
 void ProcessMessages(CamRxData rx_data);
 
 /**
- * @brief  Process errors conatined in messages
- * @param  rx_data: data received for uart
- * @retval true if an error was detected
- */	
-bool HandleTxErrors(CamRxData rx_data);
-
-/**
  * @brief  Process rx communication errors
  * @param  none
  * @retval true if an error was detected
  */	
-bool HandleRxErrors(void);
+bool HandleErrors(CamRxData rx_data);
 
 /**
  * @brief  Deletes encountered errors
@@ -93,6 +87,7 @@ uint32_t error_reset_counter_ = 0;
 ConfigCommand conf_command;
 ControlCommand cont_command;
 bool connected_ = false;
+uint16_t ping_counter_ = 0;
 
 /******************************************************************************/
 /*            									      Main           	      			 		  			*/
@@ -101,9 +96,8 @@ bool connected_ = false;
 int main(void) {
 	
 	
-	CamRxData rx_data;									// Data read from uart
-	bool errors_encountered = false;		// Indicates an error has been encountered
-	TM_DELAY_Timer_t *timer;						// timer used
+	CamRxData rx_data = {0,0,0,0,0,0,0,0};	// Data read from uart
+	TM_DELAY_Timer_t *timer;								// timer used
 	
 	SystemInit();
 	
@@ -124,7 +118,6 @@ int main(void) {
 
 	while(1){
 	
-		errors_encountered = 0;
 		/**************** Read XBee messages ************************************/
 		if(CamUart_ReadMessage(&rx_data)){
 			
@@ -137,10 +130,6 @@ int main(void) {
 				
 			timer_counter_ = 0;	// Indicates the cable cam is communicating
 			ProcessMessages(rx_data);
-			
-			// Tx errors are detected when received values does not correspond
-			// to sent values
-			errors_encountered |= HandleTxErrors(rx_data);
 			
 			#ifdef DEBUG
 				TM_USART_Puts(USART1,"\nMessage correctly received");
@@ -159,15 +148,10 @@ int main(void) {
 			#endif
 		}
 		
-		
-		errors_encountered |= HandleRxErrors();
-		
+		/************************ Handles errors *******************************/
 		
 		
-		/**************** Handles errors recovery *******************************/
-		
-		
-		if(errors_encountered){
+		if(HandleErrors(rx_data)){
 			error_reset_counter_ = 0;
 			#ifdef DEBUG
 				TM_USART_Puts(USART1,"Errors found\n");
@@ -208,6 +192,13 @@ int main(void) {
 			cont_command.speed = CamScreenP_GetSpeed();
 			cont_command.emergency_stop = true;
 			CamUart_SendControlFrame(cont_command);
+		}
+
+		/******************************** Ping **********************************/
+		
+		if(ping_counter_ >= PING_INTERVAL){
+			ping_counter_ = 0;
+			CamUart_SendPingFrame();
 		}
 
 		/********************** Screen Thread ************************************/
@@ -253,6 +244,7 @@ void ScreenEvents(uint8_t screen){
 void CustomTimerHandler(void* param){
 	timer_counter_++;
 	error_reset_counter_++;
+	ping_counter_++;
 }
 
 /******************************************************************************/
@@ -279,37 +271,14 @@ void ProcessMessages(CamRxData rx_data){
 
 /******************************************************************************/
 
-bool HandleTxErrors(CamRxData rx_data){
-		
-	// Clears errors that do not need to be shown longer. Only communication
-	// errors must stay on screen even if they are received only once.
+bool HandleErrors(CamRxData rx_data){
+	
+	uint8_t errors = CamUart_GetRxErrorsCount();
+	
+	// Clears all errors except communication ones
 	errors_flags_ &= CLEAR_ERRORS;
 	// Raises new flags
 	errors_flags_ |= rx_data.error;
-	
-	
-	
-	// If a config is different from expected
-	if((conf_command.accel != rx_data.accel)
-		|| (conf_command.cable_lenght != rx_data.cable_lenght) 
-		|| (cont_command.speed != rx_data.aimed_speed)){
-		// Sets an error flag
-		errors_flags_ |= TX_ERROR;
-	}
-
-	CamScreenP_Errors(errors_flags_);
-	
-	if(errors_flags_)
-		return true;
-	else
-		return false;
-
-}
-
-/******************************************************************************/
-
-bool HandleRxErrors(void){
-	uint8_t errors = CamUart_GetRxErrorsCount();
 	
 	// Verify and show rx errors
 	if(errors){

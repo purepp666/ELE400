@@ -600,8 +600,8 @@ void CamScreen_RefreshEcranControle(T_Controle_Information* Controle_Information
 			TM_ILI9341_Puts(10,i,"-End of cable reached", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
 			i+=13;
 		}
-		if((Controle_Information->errors_flags & INTERFACES_CONFLICT)	== INTERFACES_CONFLICT){
-			TM_ILI9341_Puts(10,i,"-Other interfaces try\n to connect", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
+		if((Controle_Information->errors_flags & NO_INTERFACES)	== NO_INTERFACES){
+			TM_ILI9341_Puts(10,i,"-No interfaces connected", &TM_Font_7x10, ILI9341_COLOR_ORANGE, ILI9341_COLOR_WHITE);
 			i+=13;
 		}
 		if((Controle_Information->errors_flags & TX_ERROR)	|| (Controle_Information->errors_flags & RX_ERROR)){

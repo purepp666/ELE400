@@ -100,5 +100,12 @@
 	 * @retval bool true if a message has been read
 	 */	
 		bool CamUart_ReadMessage(CamRxData *data);
+		
+	/**
+	 * @brief Send a ping to the controller indicating we are online
+	 * @param none
+	 * @retval none
+	 */		
+		void CamUart_SendPingFrame(void);
 
 #endif

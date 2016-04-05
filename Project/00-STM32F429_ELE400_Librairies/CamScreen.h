@@ -95,7 +95,7 @@
 	#define INVALID_COMMAND 			0x10
 	#define OBSTACLE 							0x20
 	#define EMERGENCY_STOP 				0x40
-	#define INTERFACES_CONFLICT 	0x80
+	#define NO_INTERFACES 				0x80
 	#define TX_ERROR 							0x100
 	#define RX_ERROR 							0x200
 

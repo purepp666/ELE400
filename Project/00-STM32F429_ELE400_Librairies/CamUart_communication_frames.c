@@ -23,6 +23,7 @@
 #define CONFIG_SOF 				"CNF"
 #define CONTROL_SOF 			"CNT"
 #define RX_MSG_SOF 				"STA"
+#define PING_SOF 					"PNG"
 #define RX_BUF_SIZE 			25
 #define USART_USED				USART1 // The interrupt handler must correspond
 #define PINS_USED					TM_USART_PinsPack_2
@@ -99,6 +100,18 @@ void CamUart_SendConnectFrame(void){
 
 /******************************************************************************/
  
+void CamUart_SendPingFrame(void){
+	uint8_t frame[5] = {PING_SOF[0], PING_SOF[1], PING_SOF[2]};
+	uint8_t i = 3;
+	
+	frame[i++] = this_device_address_;
+	frame[i++] = CamUart_CalculateChecksum(frame, 4);								
+	
+	TM_USART_Send(USART_USED, frame, i);
+}
+
+/******************************************************************************/
+ 
 void CamUart_SendDisconnectFrame(void){
 	uint8_t frame[5] = {DISCONNECT_SOF[0], DISCONNECT_SOF[1], DISCONNECT_SOF[2]};
 	uint8_t i = 3;
@@ -133,7 +146,7 @@ void CamUart_SendControlFrame(const ControlCommand data){
 	frame[i++] = this_device_address_;
 	frame[i++] = data.speed;
 	frame[i++] = (uint8_t)data.emergency_stop;
-	frame[i++] = CamUart_CalculateChecksum(frame, 5);								
+	frame[i++] = CamUart_CalculateChecksum(frame, 6);								
 	
 	TM_USART_Send(USART_USED, frame, i);
 }
