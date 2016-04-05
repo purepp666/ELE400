@@ -31,6 +31,7 @@
 #define DISCOVERY_DELAY 			20			// x 0.1 sec
 #define ERROR_RECOVERY_COUNT 	200		// x 0.1 sec
 #define ADDRESS 							0x7A
+#define CLEAR_ERRORS					0x300
 
 
 
@@ -280,6 +281,9 @@ void ProcessMessages(CamRxData rx_data){
 
 bool HandleTxErrors(CamRxData rx_data){
 		
+	// Clears errors that do not need to be shown longer. Only communication
+	// errors must stay on screen even if they are received only once.
+	errors_flags_ &= CLEAR_ERRORS;
 	// Raises new flags
 	errors_flags_ |= rx_data.error;
 	
