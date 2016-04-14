@@ -115,5 +115,12 @@
 	 * @retval int8_t speed
 	 */	
 	int8_t CamScreenP_GetSpeed(void);
+	
+	/**
+	 * @brief  resets user's wanted speed. useful for emergency stop 
+	 * @param  none
+	 * @retval none
+	 */	
+	void CamScreenP_ResetWantedSpeed(void);
 
 #endif

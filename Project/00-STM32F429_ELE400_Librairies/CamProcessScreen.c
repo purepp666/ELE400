@@ -107,14 +107,14 @@ void CamScreenP_HandleControlScreen(void){
 		case BUTTON_FORWARD:
 			if(control_info_.VitesseVoulu < 0){
 				control_info_.VitesseVoulu = control_info_.VitesseVoulu*-1;
-				event_callback_(CONTROL);
 			}	
+			event_callback_(CONTROL);
 			break;
 		case BUTTON_BACKWARD:
 			if(control_info_.VitesseVoulu >= 0){
 				control_info_.VitesseVoulu = control_info_.VitesseVoulu*-1;
-				event_callback_(CONTROL);
 			}
+			event_callback_(CONTROL);
 			break;
 		case BUTTON_SPEED_P:
 			if(control_info_.VitesseVoulu < 100){
@@ -253,6 +253,12 @@ uint16_t CamScreenP_GetCableLenght(void){
 
 int8_t CamScreenP_GetSpeed(void){
 	return control_info_.VitesseVoulu;
+}
+
+/******************************************************************************/
+
+void CamScreenP_ResetWantedSpeed(){
+	control_info_.VitesseVoulu = 0;
 }
 
 /******************************************************************************/

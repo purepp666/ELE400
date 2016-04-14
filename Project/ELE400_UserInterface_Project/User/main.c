@@ -192,6 +192,7 @@ int main(void) {
 			cont_command.speed = CamScreenP_GetSpeed();
 			cont_command.emergency_stop = true;
 			CamUart_SendControlFrame(cont_command);
+			CamScreenP_ResetWantedSpeed();
 		}
 
 		/******************************** Ping **********************************/
